@@ -1,3 +1,4 @@
 en:
   global:
     title: Financial Control
+    footer: © %{year} Financial Control
