@@ -1,0 +1,27 @@
+<div class="columns is-center is-fullheight">
+  <div class="column has-background-light forgot-screen has-text-centered">
+    <h1 class="title"><%= t('devise.passwords.forgot_your_password') %></h1>
+
+    <div class="field">
+      <%= form_for(resource, as: resource_name,
+        url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= devise_error_messages! %>
+
+        <%= render 'shared/input_field', f: f, type: :email_field, field: :email %>
+
+        <div class="field">
+          <div class="control">
+            <%= f.submit t('.send_reset_pass_instructions'), class: 'button is-primary is-fullwidth' %>
+          </div>
+        </div>
+      <% end %>
+
+      <br />
+      <div class="field">
+        <div class="control">
+          <%= render 'devise/shared/links' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

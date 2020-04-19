@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+ .is-fullheight.columns {
+    min-height: calc(100vh - (3.25rem - .75rem) - 25px);
+  }
+
+.is-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

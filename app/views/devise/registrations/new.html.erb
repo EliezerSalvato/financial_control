@@ -1,0 +1,36 @@
+<div class="columns is-center is-fullheight">
+  <div class="column has-background-light signup-screen has-text-centered">
+    <h1 class="title"><%= t('devise.registrations.signup') %></h1>
+
+    <div class="field">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+
+        <%= render 'shared/input_field', f: f, type: :text_field, field: :user_name %>
+
+        <%= render 'shared/input_field', f: f, type: :email_field, field: :email %>
+
+        <%= render 'shared/input_field', f: f, type: :text_field, field: :first_name %>
+
+        <%= render 'shared/input_field', f: f, type: :text_field, field: :last_name %>
+
+        <%= render 'shared/input_field', f: f, type: :password_field, field: :password %>
+
+        <%= render 'shared/input_field', f: f, type: :password_field, field: :password_confirmation %>
+
+        <div class="field">
+          <div class="control">
+            <%= f.submit t('.signup'), class: 'button is-primary is-fullwidth' %>
+          </div>
+        </div>
+      <% end %>
+
+      <br />
+      <div class="field">
+        <div class="control">
+          <%= render 'devise/shared/links' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

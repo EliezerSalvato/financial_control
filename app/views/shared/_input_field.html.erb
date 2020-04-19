@@ -1,0 +1,14 @@
+<div class="field">
+  <div class="control">
+    <% error_message = resource.errors.messages[field].first %>
+    <% input_class = error_message.blank? ? 'is-primary' : 'is-danger' %>
+    <%= f.label field, class: 'label' do %>
+      <%= resource.class.human_attribute_name(field) %>
+      <% if required?(field) %>
+        <abbr title="Required">*</abbr>
+      <% end %>
+    <% end %>
+    <%= f.send(type, field, autofocus: true, class: "input #{input_class}") %>
+    <p class="help is-danger"><%= error_message %></p>
+  </div>
+</div>

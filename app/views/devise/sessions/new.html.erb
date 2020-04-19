@@ -1,0 +1,56 @@
+<div class="columns is-center is-fullheight">
+  <div class="column has-background-light login-screen has-text-centered">
+    <h1 class="title"><%= t('devise.sessions.login') %></h1>
+
+    <div class="field">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+
+        <div class="field">
+          <div class="control has-icons-right">
+            <%= f.text_field :login, autocomplete: 'login', autofocus: true, class: 'input is-primary',
+              placeholder: t('.type_your_username_or_email') %>
+            <span class="icon is-small is-right">
+              <i class="fas fa-user"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control has-icons-right">
+            <%= f.password_field :password, autocomplete: 'password', class: 'input is-primary',
+              placeholder: t('.type_your_password') %>
+            <span class="icon is-small is-right">
+              <i class="fas fa-lock"></i>
+            </span>
+          </div>
+        </div>
+        <br />
+
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <div class="control">
+              <%= f.label :remember_me, class: 'checkbox is-primary' do %>
+                <%= f.check_box :remember_me %>
+                <%= t('.remember_me') %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <div class="control">
+            <%= f.submit t('.login'), class: 'button is-primary is-fullwidth' %>
+          </div>
+        </div>
+      <% end %>
+
+      <br />
+      <div class="field">
+        <div class="control">
+          <%= render 'devise/shared/links' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
