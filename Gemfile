@@ -11,6 +11,8 @@ gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 gem 'devise'
 gem 'audited', '~> 4.9'
+gem 'u-case', '~> 2.3', require: 'u-case/with_validation'
+gem 'type_validator', '~> 1.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
