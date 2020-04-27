@@ -12,7 +12,7 @@ import categories from "./views/categories/index.vue";
 import partners from "./views/partners/index.vue";
 
 const router = new VueRouter({
-  linkExactActiveClass: "is-active",
+  linkActiveClass: "is-active",
   mode: "history",
   routes: [
     { path: "/", component: dashboard },

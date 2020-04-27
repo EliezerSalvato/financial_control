@@ -16,7 +16,7 @@
 
       <div id="navMenu" class="navbar-menu">
         <div class="navbar-end" @click="menuClick">
-          <router-link class="navbar-item" to="/">
+          <router-link class="navbar-item" to="/" exact>
             Dashboard
           </router-link>
           <router-link class="navbar-item" to="/incomes">
