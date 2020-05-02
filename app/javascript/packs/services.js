@@ -16,11 +16,14 @@ const axiosInstance = axios.create({
 });
 
 export const api = {
-  get(endpoint) {
-    return axiosInstance.get(endpoint);
+  get(endpoint, params = {}) {
+    return axiosInstance.get(endpoint, { params });
   },
   post(endpoint, body) {
     return axiosInstance.post(endpoint, body);
+  },
+  put(endpoint, body) {
+    return axiosInstance.put(endpoint, body);
   },
   delete(endpoint) {
     return axiosInstance.delete(endpoint);
