@@ -23,3 +23,25 @@
   justify-content: center;
   align-items: center;
 }
+
+.notification {
+  margin: 0 0 10px !important;
+}
+
+.notification.is-success {
+  color: #257942 !important;
+  background-color: #effaf3 !important;
+}
+
+.notification.is-danger {
+  color: #cc0f35 !important;
+  background-color: #feecf0 !important;
+}
+
+.panel {
+  margin-bottom: 40px !important;
+}
+
+.panel-block {
+  padding: 15px !important;
+}
