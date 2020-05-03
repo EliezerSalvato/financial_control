@@ -18,19 +18,20 @@
     },
     data() {
       return {
-        defaultType: "danger"
+        dangerType: "danger",
+        successType: "success"
       }
     },
     computed: {
-      ...mapState(["currentMessage"]),
+      ...mapState(["currentMessage", "currentMessageType"]),
       currentType() {
-        return (this.type || this.defaultType);
+        return (this.type || this.currentMessageType);
       },
       classType() {
         return 'is-' + this.currentType;
       },
       iconType() {
-        return (this.currentType == this.defaultType ? "fa-times" : "fa-check");
+        return (this.currentType == this.dangerType ? "fa-times" : "fa-check");
       }
     },
     methods: {
