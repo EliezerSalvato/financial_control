@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
+  has_many :groups
+
   attr_writer :login
 
   validates :user_name, uniqueness: true
