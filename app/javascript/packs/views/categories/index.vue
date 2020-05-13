@@ -1,13 +1,81 @@
 <template>
-  <div>
-    Categories
-  </div>
+  <IndexPanel
+    modelName="category"
+    :items="items"
+    :paginatable="paginatable"
+    @change:page="changePage"
+    @delete:item="deleteItem"
+  >
+    <template #table-filters>
+      <td>
+        <InputText name="by_name" placeholder="Filter by name" @change:value="filterChange" />
+      </td>
+      <td class="is-hidden-touch">
+        <Select
+          name="by_active"
+          placeholder="Filter by active"
+          :items="selectItems"
+          @change:selected="filterChange"
+        />
+      </td>
+    </template>
+
+    <template #table-header>
+      <th>Name</th>
+      <th class="is-hidden-touch">Active</th>
+    </template>
+
+    <template #table-item="{ item }">
+      <td class="is-hidden-touch">{{ item.active ? "Yes" : "No" }}</td>
+    </template>
+  </IndexPanel>
 </template>
 
 <script>
-  export default {}
+  import { mapActions } from "vuex";
+  import { api } from "../../services.js";
+  import indexable from "../../mixins/indexable.js";
+  import IndexPanel from "../../components/IndexPanel.vue";
+
+  export default {
+    mixins: [indexable],
+    components: {
+      IndexPanel
+    },
+    data() {
+      return {
+        selectItems: {
+          'true': 'Active',
+          'false': 'Inactive'
+        }
+      }
+    },
+    methods: {
+      ...mapActions(["setOpenModalDelete", "setCurrentMessage"]),
+      getData() {
+        api.get("categories", this.currentQuery).then(response => {
+          const result = response.data;
+          this.items = result.data;
+          this.paginatable = result.paginatable;
+        });
+      },
+      deleteItem(itemId) {
+        api.delete(`categories/${itemId}`).then(response => {
+          if (response["status"] === 200) {
+            const message = "Category was successfully removed.";
+            this.setCurrentMessage({ message: message, type: "success" });
+            this.setOpenModalDelete(false);
+            this.getData();
+            this.changePage(1);
+          }
+        }).catch(error => {
+          this.catch_errors(error);
+          this.setOpenModalDelete(false);
+        });
+      }
+    }
+  }
 </script>
 
 <style scoped>
-
 </style>
