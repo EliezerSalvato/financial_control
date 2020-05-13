@@ -41,7 +41,7 @@
               <slot name="table-body" />
 
               <ModalDelete
-                modelName="group"
+                :modelName="modelName"
                 :currentItemId="itemIdToDelete"
                 :itemName="itemNameToDelete"
                 @delete:item="deleteItem"
