@@ -1,25 +1,11 @@
 import { mapActions } from "vuex";
-import InputText from "../components/inputs/InputText.vue";
-import Select from "../components/inputs/Select.vue";
-import CheckBox from "../components/inputs/CheckBox.vue";
+import inputable from "./inputable.js";
 
 export default {
-  name: "Form",
-  components: {
-    InputText,
-    Select,
-    CheckBox
-  },
-  data() {
-    return {
-      errors: {}
-    }
-  },
+  name: "Formable",
+  mixins: [inputable],
   methods: {
     ...mapActions(["setCurrentMessage"]),
-    error(field) {
-      return (this.errors[field] ? this.errors[field][0] : "");
-    },
     catch_errors(error) {
       const status = error.response["status"];
 

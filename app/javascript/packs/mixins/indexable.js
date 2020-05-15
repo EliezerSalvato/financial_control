@@ -1,12 +1,8 @@
-import InputText from "../components/inputs/InputText.vue";
-import Select from "../components/inputs/Select.vue";
+import inputable from "./inputable.js";
 
 export default {
-  name: "Index",
-  components: {
-    InputText,
-    Select
-  },
+  name: "Indexable",
+  mixins: [inputable],
   data() {
     return {
       items: null,
