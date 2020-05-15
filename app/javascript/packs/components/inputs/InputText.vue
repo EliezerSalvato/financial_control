@@ -10,8 +10,9 @@
       class="input"
       :name="name"
       :value="value"
+      :maxlength="maxlength"
       :placeholder="placeholder"
-       :class="{ 'is-danger': error }"
+      :class="{ 'is-danger': error }"
       @input="updateValue"
     />
     <p class="help is-danger">{{ error }}</p>
@@ -27,7 +28,8 @@
       label: String,
       error: String,
       placeholder: String,
-      required: { type: Boolean, default: false }
+      required: { type: Boolean, default: false },
+      maxlength: { type: Number, default: 250 }
     },
     methods: {
       updateValue(event) {
