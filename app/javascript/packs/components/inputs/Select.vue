@@ -12,6 +12,7 @@
         ref="input"
         :class="{ 'is-danger': error }"
         @change="change"
+        :disabled="disabled"
       >
         <option value="" default></option>
         <option v-for="(text, value) in items" :value="value" :key="value">
@@ -34,7 +35,8 @@
       error: String,
       placeholder: String,
       items: Object,
-      required: { type: Boolean, default: false }
+      required: { type: Boolean, default: false },
+      disabled: { type: String, default: null }
     },
     data() {
       return {
@@ -48,6 +50,11 @@
       },
       focus() {
         this.$refs.input.focus();
+      }
+    },
+    watch: {
+      value() {
+        this.currentValue = this.value;
       }
     }
   }
