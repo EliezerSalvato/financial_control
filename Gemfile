@@ -15,6 +15,7 @@ gem 'u-case', '~> 2.3', require: 'u-case/with_validation'
 gem 'type_validator', '~> 1.0'
 gem 'has_scope'
 gem 'kaminari'
+gem 'enumerate_it'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do

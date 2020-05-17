@@ -73,6 +73,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    enumerate_it (3.1.0)
+      activesupport (>= 4.2.0)
     erubi (1.9.0)
     ffi (1.12.2)
     globalid (0.4.2)
@@ -220,6 +222,7 @@ DEPENDENCIES
   audited (~> 4.9)
   bootsnap (>= 1.4.2)
   devise
+  enumerate_it
   has_scope
   kaminari
   listen (>= 3.0.5, < 3.2)
