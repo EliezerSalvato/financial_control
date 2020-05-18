@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :groups
   has_many :categories
+  has_many :cards
 
   attr_writer :login
 

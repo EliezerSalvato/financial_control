@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_215509) do
+ActiveRecord::Schema.define(version: 2020_05_13_183112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,20 @@ ActiveRecord::Schema.define(version: 2020_05_04_215509) do
     t.index ["user_id", "user_type"], name: "user_index"
   end
 
+  create_table "cards", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "card_id", null: false
+    t.string "card_type", null: false
+    t.string "name", null: false
+    t.boolean "active", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["active"], name: "index_cards_on_active"
+    t.index ["card_type", "card_id"], name: "card_type_index"
+    t.index ["name"], name: "index_cards_on_name"
+    t.index ["user_id"], name: "index_cards_on_user_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name", null: false
@@ -46,6 +60,15 @@ ActiveRecord::Schema.define(version: 2020_05_04_215509) do
     t.index ["active"], name: "index_categories_on_active"
     t.index ["name"], name: "index_categories_on_name"
     t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
+  create_table "credits", force: :cascade do |t|
+    t.decimal "limit", null: false
+    t.decimal "super_limit"
+    t.integer "due_day", null: false
+    t.integer "closing_day", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "groups", force: :cascade do |t|
@@ -78,6 +101,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_215509) do
     t.index ["user_name"], name: "index_users_on_user_name", unique: true
   end
 
+  add_foreign_key "cards", "users"
   add_foreign_key "categories", "users"
   add_foreign_key "groups", "users"
 end

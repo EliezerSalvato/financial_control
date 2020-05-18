@@ -6,7 +6,10 @@ Vue.use(VueRouter);
 import dashboard from "./views/dashboard/index.vue";
 import incomes from "./views/incomes/index.vue";
 import expenses from "./views/expenses/index.vue";
+
 import cards from "./views/cards/index.vue";
+import newCard from "./views/cards/new.vue";
+import editCard from "./views/cards/edit.vue";
 
 import groups from "./views/groups/index.vue";
 import newGroup from "./views/groups/new.vue";
@@ -25,7 +28,10 @@ const router = new VueRouter({
     { path: "/", component: dashboard },
     { path: "/incomes", component: incomes },
     { path: "/expenses", component: expenses },
+
     { path: "/cards", component: cards },
+    { path: "/cards/new", component: newCard },
+    { path: "/cards/edit/:id", component: editCard },
 
     { path: "/groups", component: groups },
     { path: "/groups/new", component: newGroup },
