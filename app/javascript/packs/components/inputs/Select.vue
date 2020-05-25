@@ -15,7 +15,10 @@
         :disabled="disabled"
       >
         <option value="" default></option>
-        <option v-for="(text, value) in items" :value="value" :key="value">
+        <option v-for="{ id, description } in itemsArray" :value="id" :key="id">
+          {{ description }}
+        </option>
+        <option v-for="(text, value) in itemsObject" :value="value" :key="value">
           {{ text }}
         </option>
         <slot />
@@ -30,17 +33,25 @@
     name: "Select",
     props: {
       name: String,
-      value: String,
+      value: [String, Number],
       label: String,
       error: String,
       placeholder: String,
-      items: Object,
+      items: [Object, Array],
       required: { type: Boolean, default: false },
       disabled: { type: String, default: null }
     },
     data() {
       return {
         currentValue: null
+      }
+    },
+    computed: {
+      itemsArray() {
+        return (Array.isArray(this.items) ? this.items : []);
+      },
+      itemsObject() {
+        return (!Array.isArray(this.items) ? this.items : {});
       }
     },
     methods: {
@@ -54,6 +65,11 @@
     },
     watch: {
       value() {
+        this.currentValue = this.value;
+      }
+    },
+    updated() {
+      if (["string", "number"].includes(typeof this.value)) {
         this.currentValue = this.value;
       }
     }
@@ -70,6 +86,10 @@
     color: #ccc;
     margin-top: 6px;
     margin-left: 9px;
+  }
+
+  .input {
+    box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
   }
 
   div select {
