@@ -9,12 +9,29 @@ const CARD_TYPES = {
 }
 Object.freeze(CARD_TYPES)
 
+const ExpenseTypes = {
+  CARD: "card",
+  INSTALLMENT: "installment",
+  RECURRING_INSTALLMENTS: "recurring_installments",
+  RECURRING_EXPENSE: "recurring_expense",
+  CASH: "cash",
+  values: {
+    card: "Card",
+    installment: "Installment",
+    recurring_installments: "Recurring Installments",
+    recurring_expense: "Recurring Expense",
+    cash: "Cash"
+  }
+}
+Object.freeze(ExpenseTypes)
+
 export default {
   name: "Enumerable",
   data() {
     return {
       DateFormat,
-      CARD_TYPES
+      CARD_TYPES,
+      ExpenseTypes
     }
   }
 }
