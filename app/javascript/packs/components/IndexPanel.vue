@@ -49,7 +49,7 @@
             </tbody>
 
             <tfoot>
-              <td colspan="3">
+              <td colspan="99">
                 <Paginator :paginatable="paginatable" @change:page="changePage" />
               </td>
             </tfoot>
