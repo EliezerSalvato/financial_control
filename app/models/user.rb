@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :groups
   has_many :categories
   has_many :cards
+  has_many :expenses
 
   attr_writer :login
 

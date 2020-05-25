@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_183112) do
+ActiveRecord::Schema.define(version: 2020_05_18_143127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,32 @@ ActiveRecord::Schema.define(version: 2020_05_13_183112) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "expense_recurrents", force: :cascade do |t|
+    t.bigint "expense_id"
+    t.date "date", null: false
+    t.decimal "value", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["expense_id"], name: "index_expense_recurrents_on_expense_id"
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "card_id"
+    t.bigint "group_id"
+    t.bigint "category_id"
+    t.string "description", null: false
+    t.string "expense_type", null: false
+    t.date "end_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["card_id"], name: "index_expenses_on_card_id"
+    t.index ["category_id"], name: "index_expenses_on_category_id"
+    t.index ["description"], name: "index_expenses_on_description"
+    t.index ["group_id"], name: "index_expenses_on_group_id"
+    t.index ["user_id"], name: "index_expenses_on_user_id"
+  end
+
   create_table "groups", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name", null: false
@@ -103,5 +129,10 @@ ActiveRecord::Schema.define(version: 2020_05_13_183112) do
 
   add_foreign_key "cards", "users"
   add_foreign_key "categories", "users"
+  add_foreign_key "expense_recurrents", "expenses"
+  add_foreign_key "expenses", "cards"
+  add_foreign_key "expenses", "categories"
+  add_foreign_key "expenses", "groups"
+  add_foreign_key "expenses", "users"
   add_foreign_key "groups", "users"
 end

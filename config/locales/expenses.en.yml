@@ -1,0 +1,8 @@
+en:
+  activerecord:
+    errors:
+      models:
+        expense:
+          attributes:
+            expense_type:
+              cannot_be_changed: can't be changed
