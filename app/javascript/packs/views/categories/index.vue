@@ -14,7 +14,7 @@
         <Select
           name="by_active"
           placeholder="Filter by active"
-          :items="selectItems"
+          :items="ActivationTypes.values"
           @change:selected="filterChange"
         />
       </td>
@@ -41,14 +41,6 @@
     mixins: [indexable],
     components: {
       IndexPanel
-    },
-    data() {
-      return {
-        selectItems: {
-          'true': 'Active',
-          'false': 'Inactive'
-        }
-      }
     },
     methods: {
       ...mapActions(["setOpenModalDelete", "setCurrentMessage"]),

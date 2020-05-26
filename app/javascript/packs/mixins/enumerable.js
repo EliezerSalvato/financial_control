@@ -4,6 +4,16 @@ const DateFormat = {
 }
 Object.freeze(DateFormat)
 
+const ActivationTypes = {
+  ACTIVE: true,
+  INACTIVE: false,
+  values: {
+    "true": "Active",
+    "false": "Inactive"
+  }
+}
+Object.freeze(ActivationTypes)
+
 const CardTypes = {
   CREDIT: "Credit",
   values: {
@@ -43,6 +53,7 @@ export default {
   data() {
     return {
       DateFormat,
+      ActivationTypes,
       CardTypes,
       ExpenseTypes,
       IncomeTypes
