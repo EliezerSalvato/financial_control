@@ -24,14 +24,14 @@
             label="Card type"
             placeholder="Choose a card type"
             :required="true"
-            :items="CARD_TYPES"
+            :items="CardTypes.values"
             :error="error('card_type')"
             disabled
           />
         </div>
       </div>
 
-      <creditsForm v-if="cardType == CARD_TYPES.Credit" v-model="credit" :form_errors="errors" />
+      <creditsForm v-if="cardType == CardTypes.CREDIT" v-model="credit" :form_errors="errors" />
 
       <div class="field">
         <div class="control">
@@ -73,7 +73,7 @@
     methods: {
       cardAttributes(type) {
         switch(type) {
-          case this.CARD_TYPES.Credit: return this.credit; break;
+          case this.CardTypes.CREDIT: return this.credit; break;
           default: return null;
         }
       },
@@ -102,7 +102,7 @@
       },
       setCardByType(result) {
         switch(result.card_type) {
-          case this.CARD_TYPES.Credit:
+          case this.CardTypes.CREDIT:
             const super_limit = result.card.super_limit;
             this.credit = {
               limit: Number(result.card.limit),

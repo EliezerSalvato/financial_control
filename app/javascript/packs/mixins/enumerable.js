@@ -4,10 +4,13 @@ const DateFormat = {
 }
 Object.freeze(DateFormat)
 
-const CARD_TYPES = {
-  Credit: "Credit"
+const CardTypes = {
+  CREDIT: "Credit",
+  values: {
+    Credit: "Credit"
+  }
 }
-Object.freeze(CARD_TYPES)
+Object.freeze(CardTypes)
 
 const ExpenseTypes = {
   CARD: "card",
@@ -40,7 +43,7 @@ export default {
   data() {
     return {
       DateFormat,
-      CARD_TYPES,
+      CardTypes,
       ExpenseTypes,
       IncomeTypes
     }
