@@ -10,7 +10,7 @@
       <td>
         <InputText name="by_description" placeholder="Filter by description" @change:value="filterChange" />
       </td>
-      <td class="is-hidden-touch">
+      <td class="is-hidden-mobile">
         <Select
           name="by_expense_type"
           placeholder="Filter by expense type"
@@ -18,7 +18,7 @@
           @change:selected="filterChange"
         />
       </td>
-      <td class="is-hidden-touch"></td>
+      <td class="is-hidden-mobile"></td>
       <td class="is-hidden-touch">
         <Select
           name="by_card_id"
@@ -31,14 +31,14 @@
 
     <template #table-header>
       <th>Description</th>
-      <th class="expense_type is-hidden-touch">Expense type</th>
-      <th class="is-hidden-touch">Expense date</th>
-      <th class="is-hidden-touch">Card</th>
+      <th class="expense_type is-hidden-mobile">Expense type</th>
+      <th class="is-hidden-mobile">Expense date</th>
+      <th class="card_name is-hidden-touch">Card</th>
     </template>
 
     <template #table-item="{ item }">
-      <td class="is-hidden-touch">{{ ExpenseTypes.values[item.expense_type] }}</td>
-      <td class="is-hidden-touch">{{ expenseDate(item) }}</td>
+      <td class="is-hidden-mobile">{{ ExpenseTypes.values[item.expense_type] }}</td>
+      <td class="is-hidden-mobile">{{ expenseDate(item) }}</td>
       <td class="is-hidden-touch">{{ item.card && item.card.name }}</td>
     </template>
   </IndexPanel>
@@ -106,6 +106,10 @@
 
 <style scoped>
   .expense_type {
-    min-width: 140px;
+    min-width: 228px;
+  }
+
+  .card_name {
+    min-width: 165px;
   }
 </style>

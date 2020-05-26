@@ -10,7 +10,7 @@
       <td>
         <InputText name="by_name" placeholder="Filter by name" @change:value="filterChange" />
       </td>
-      <td class="is-hidden-touch">
+      <td class="is-hidden-mobile">
         <Select
           name="by_card_type"
           placeholder="Filter by card type"
@@ -18,7 +18,7 @@
           @change:selected="filterChange"
         />
       </td>
-      <td class="is-hidden-touch">
+      <td class="is-hidden-mobile">
         <Select
           name="by_active"
           placeholder="Filter by active"
@@ -30,13 +30,13 @@
 
     <template #table-header>
       <th>Name</th>
-      <th>Card type</th>
-      <th class="is-hidden-touch">Active</th>
+      <th class="card_type is-hidden-mobile">Card type</th>
+      <th class="active is-hidden-mobile">Active</th>
     </template>
 
     <template #table-item="{ item }">
-      <td class="is-hidden-touch">{{ CardTypes.values[item.card_type] }}</td>
-      <td class="is-hidden-touch">{{ item.active ? "Yes" : "No" }}</td>
+      <td class="is-hidden-mobile">{{ CardTypes.values[item.card_type] }}</td>
+      <td class="is-hidden-mobile">{{ item.active ? "Yes" : "No" }}</td>
     </template>
   </IndexPanel>
 </template>
@@ -80,4 +80,11 @@
 </script>
 
 <style scoped>
+  .card_type {
+    min-width: 200px;
+  }
+
+  .active {
+    min-width: 175px;
+  }
 </style>
