@@ -12,6 +12,14 @@
       </td>
       <td class="is-hidden-touch">
         <Select
+          name="by_card_type"
+          placeholder="Filter by card type"
+          :items="CardTypes.values"
+          @change:selected="filterChange"
+        />
+      </td>
+      <td class="is-hidden-touch">
+        <Select
           name="by_active"
           placeholder="Filter by active"
           :items="ActivationTypes.values"
@@ -22,10 +30,12 @@
 
     <template #table-header>
       <th>Name</th>
+      <th>Card type</th>
       <th class="is-hidden-touch">Active</th>
     </template>
 
     <template #table-item="{ item }">
+      <td class="is-hidden-touch">{{ CardTypes.values[item.card_type] }}</td>
       <td class="is-hidden-touch">{{ item.active ? "Yes" : "No" }}</td>
     </template>
   </IndexPanel>
