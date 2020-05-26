@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_18_143127) do
+ActiveRecord::Schema.define(version: 2020_05_25_205109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,32 @@ ActiveRecord::Schema.define(version: 2020_05_18_143127) do
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
+  create_table "income_recurrents", force: :cascade do |t|
+    t.bigint "income_id"
+    t.date "date", null: false
+    t.decimal "value", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["income_id"], name: "index_income_recurrents_on_income_id"
+  end
+
+  create_table "incomes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "card_id"
+    t.bigint "group_id"
+    t.bigint "category_id"
+    t.string "description", null: false
+    t.string "income_type", null: false
+    t.date "end_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["card_id"], name: "index_incomes_on_card_id"
+    t.index ["category_id"], name: "index_incomes_on_category_id"
+    t.index ["description"], name: "index_incomes_on_description"
+    t.index ["group_id"], name: "index_incomes_on_group_id"
+    t.index ["user_id"], name: "index_incomes_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "user_name", null: false
     t.string "email", null: false
@@ -135,4 +161,9 @@ ActiveRecord::Schema.define(version: 2020_05_18_143127) do
   add_foreign_key "expenses", "groups"
   add_foreign_key "expenses", "users"
   add_foreign_key "groups", "users"
+  add_foreign_key "income_recurrents", "incomes"
+  add_foreign_key "incomes", "cards"
+  add_foreign_key "incomes", "categories"
+  add_foreign_key "incomes", "groups"
+  add_foreign_key "incomes", "users"
 end

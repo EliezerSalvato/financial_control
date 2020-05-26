@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :categories
       resources :cards
       resources :expenses
+      resources :incomes
     end
   end
 

@@ -4,7 +4,10 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 import dashboard from "./views/dashboard/index.vue";
+
 import incomes from "./views/incomes/index.vue";
+import newIncome from "./views/incomes/new.vue";
+import editIncome from "./views/incomes/edit.vue";
 
 import expenses from "./views/expenses/index.vue";
 import newExpense from "./views/expenses/new.vue";
@@ -29,7 +32,10 @@ const router = new VueRouter({
   mode: "history",
   routes: [
     { path: "/", component: dashboard },
+
     { path: "/incomes", component: incomes },
+    { path: "/incomes/new", component: newIncome },
+    { path: "/incomes/edit/:id", component: editIncome },
 
     { path: "/expenses", component: expenses },
     { path: "/expenses/new", component: newExpense },

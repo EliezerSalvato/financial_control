@@ -25,13 +25,24 @@ const ExpenseTypes = {
 }
 Object.freeze(ExpenseTypes)
 
+const IncomeTypes = {
+  SALARY: "salary",
+  CASH: "cash",
+  values: {
+    salary: "Salary",
+    cash: "Cash"
+  }
+}
+Object.freeze(IncomeTypes)
+
 export default {
   name: "Enumerable",
   data() {
     return {
       DateFormat,
       CARD_TYPES,
-      ExpenseTypes
+      ExpenseTypes,
+      IncomeTypes
     }
   }
 }
