@@ -1,8 +1,9 @@
 import inputable from "./inputable.js";
+import enumerable from "./enumerable.js";
 
 export default {
   name: "Indexable",
-  mixins: [inputable],
+  mixins: [inputable, enumerable],
   data() {
     return {
       items: null,

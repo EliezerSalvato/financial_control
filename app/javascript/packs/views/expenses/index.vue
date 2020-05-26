@@ -49,11 +49,10 @@
   import { mapActions } from "vuex";
   import { api } from "../../services.js";
   import indexable from "../../mixins/indexable.js";
-  import enumerable from "../../mixins/enumerable.js";
   import IndexPanel from "../../components/IndexPanel.vue";
 
   export default {
-    mixins: [indexable, enumerable],
+    mixins: [indexable],
     components: {
       IndexPanel
     },
