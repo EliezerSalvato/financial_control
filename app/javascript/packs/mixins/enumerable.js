@@ -16,8 +16,10 @@ Object.freeze(ActivationTypes)
 
 const CardTypes = {
   CREDIT: "Credit",
+  DEBIT: "Debit",
   values: {
-    Credit: "Credit"
+    Credit: "Credit",
+    Debit: "Debit"
   }
 }
 Object.freeze(CardTypes)

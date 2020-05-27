@@ -32,6 +32,7 @@
       </div>
 
       <creditsForm v-if="cardType == CardTypes.CREDIT" v-model="credit" :form_errors="errors" />
+      <debitsForm v-else-if="cardType == CardTypes.DEBIT" v-model="debit" :form_errors="errors" />
 
       <div class="field">
         <div class="control">
@@ -45,6 +46,7 @@
 <script>
   import { api } from "../../services.js";
   import creditsForm from "./credits/form.vue";
+  import debitsForm from "./debits/form.vue";
   import formable from "../../mixins/formable.js";
   import enumerable from "../../mixins/enumerable.js";
   import FormPanel from "../../components/FormPanel.vue";
@@ -53,8 +55,9 @@
     name: "Edit",
     mixins: [formable, enumerable],
     components: {
+      FormPanel,
       creditsForm,
-      FormPanel
+      debitsForm
     },
     data() {
       return {
@@ -67,6 +70,9 @@
           due_day: null,
           closing_day: null
         },
+        debit: {
+          current_money: null
+        },
         active: null
       }
     },
@@ -74,6 +80,7 @@
       cardAttributes(type) {
         switch(type) {
           case this.CardTypes.CREDIT: return this.credit; break;
+          case this.CardTypes.DEBIT: return this.debit; break;
           default: return null;
         }
       },
@@ -111,6 +118,10 @@
               closing_day: result.card.closing_day,
             }
             break;
+          case this.CardTypes.DEBIT:
+            this.debit = {
+              current_money: Number(result.card.current_money)
+            }
         }
       }
     },

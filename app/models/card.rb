@@ -8,6 +8,7 @@ class Card < ApplicationRecord
 
   validates :name, :card_type, presence: true
   validates :name, uniqueness: { scope: :user }
+  validate :keep_card_type, if: :persisted?
 
   has_enumeration_for :card_type, with: CardTypes, create_helpers: true
 
@@ -28,5 +29,9 @@ class Card < ApplicationRecord
     raise "Unknown card_type: #{card_type}" if CardTypes.value_for(card_type).blank?
 
     self.card = card_type.constantize.new(params)
+  end
+
+  def keep_card_type
+    errors.add(:card_type, :cannot_be_changed) if card_type != card_type_was
   end
 end

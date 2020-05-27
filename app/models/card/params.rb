@@ -14,6 +14,8 @@ class Card::Params
       case card_type
       when CardTypes::CREDIT
         credit_params
+      when CardTypes::DEBIT
+        debit_params
       end
     end
 
@@ -24,6 +26,13 @@ class Card::Params
         :super_limit,
         :due_day,
         :closing_day
+      ]
+    end
+
+    def debit_params
+      [
+        :id,
+        :current_money
       ]
     end
   end
