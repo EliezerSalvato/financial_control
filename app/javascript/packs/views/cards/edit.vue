@@ -116,7 +116,7 @@
     },
     created() {
       if (this.$route.params.id) {
-        api.get(`cards/${this.$route.params.id}`).then(response => {
+        this.getWithLoading(`cards/${this.$route.params.id}`).then(response => {
           const result = response.data;
           this.name = result.name;
           this.active = result.active;

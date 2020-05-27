@@ -1,6 +1,8 @@
 <template>
   <div class="columns is-fullheight">
-    <div class="column">
+    <Loading v-if="showLoading" />
+
+    <div v-else class="column">
       <NotificationMessage />
 
       <nav class="panel">
@@ -24,6 +26,7 @@
 </template>
 
 <script>
+  import { mapState } from "vuex";
   import pluralize from 'pluralize';
   import NotificationMessage from "./NotificationMessage.vue";
 
@@ -37,6 +40,7 @@
       modelName: String
     },
     computed: {
+      ...mapState(["showLoading"]),
       pluralizedName() {
         return pluralize(this.modelName);
       }

@@ -1,6 +1,8 @@
 <template>
   <div class="columns is-fullheight">
-    <div class="column">
+    <Loading v-show="showLoading" />
+
+    <div v-show="!showLoading" class="column">
       <NotificationMessage />
 
       <nav class="panel">
@@ -61,7 +63,7 @@
 </template>
 
 <script>
-  import { mapActions } from "vuex";
+  import { mapState, mapActions } from "vuex";
   import pluralize from 'pluralize';
   import NotificationMessage from "./NotificationMessage.vue";
   import ButtonNew from "./inputs/ButtonNew.vue";
@@ -88,6 +90,7 @@
       }
     },
     computed: {
+      ...mapState(["showLoading"]),
       pluralizedName() {
         return pluralize(this.modelName);
       }

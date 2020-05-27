@@ -1,9 +1,10 @@
 import inputable from "./inputable.js";
 import enumerable from "./enumerable.js";
+import fetchable from "./fetchable.js";
 
 export default {
   name: "Indexable",
-  mixins: [inputable, enumerable],
+  mixins: [inputable, enumerable, fetchable],
   data() {
     return {
       items: null,

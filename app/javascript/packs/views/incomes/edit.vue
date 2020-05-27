@@ -69,7 +69,7 @@
     },
     created() {
       if (this.$route.params.id) {
-        api.get(`incomes/${this.$route.params.id}`).then(response => {
+        this.getWithLoading(`incomes/${this.$route.params.id}`).then(response => {
           const result = response.data;
           const incomeRecurrents = result.income_recurrents.map(income_recurrent => {
             return {
@@ -80,7 +80,7 @@
             }
           });
 
-          this.income = {
+          this.incomeLoaded = {
             description: result.description,
             incomeType: result.income_type,
             cardId: result.card_id,
@@ -89,7 +89,6 @@
             endAt: result.end_at,
             incomeRecurrents: incomeRecurrents
           }
-          this.incomeLoaded = this.income;
         }).catch(error => {
           this.catch_errors(error);
         });

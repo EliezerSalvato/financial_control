@@ -64,7 +64,7 @@
     methods: {
       ...mapActions(["setOpenModalDelete", "setCurrentMessage"]),
       getData() {
-        api.get("expenses", this.currentQuery).then(response => {
+        this.getWithLoading("expenses", this.currentQuery).then(response => {
           const result = response.data;
           this.items = result.data;
           this.paginatable = result.paginatable;

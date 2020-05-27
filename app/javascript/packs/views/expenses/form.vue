@@ -350,6 +350,7 @@
         this.groupId = expense.groupId;
 
         this.setWatchers();
+        this.emitChangeExpense();
       }
     },
     created() {

@@ -345,6 +345,7 @@
         this.groupId = income.groupId;
 
         this.setWatchers();
+        this.emitChangeIncome();
       }
     },
     created() {

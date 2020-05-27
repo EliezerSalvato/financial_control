@@ -45,7 +45,7 @@
     methods: {
       ...mapActions(["setOpenModalDelete", "setCurrentMessage"]),
       getData() {
-        api.get("categories", this.currentQuery).then(response => {
+        this.getWithLoading("categories", this.currentQuery).then(response => {
           const result = response.data;
           this.items = result.data;
           this.paginatable = result.paginatable;

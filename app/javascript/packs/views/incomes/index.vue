@@ -62,9 +62,9 @@
       }
     },
     methods: {
-      ...mapActions(["setOpenModalDelete", "setCurrentMessage"]),
+      ...mapActions(["setOpenModalDelete", "setCurrentMessage", "setShowLoading"]),
       getData() {
-        api.get("incomes", this.currentQuery).then(response => {
+        this.getWithLoading("incomes", this.currentQuery).then(response => {
           const result = response.data;
           this.items = result.data;
           this.paginatable = result.paginatable;

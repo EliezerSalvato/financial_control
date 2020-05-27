@@ -67,7 +67,7 @@
     },
     created() {
       if (this.$route.params.id) {
-        api.get(`groups/${this.$route.params.id}`).then(response => {
+        this.getWithLoading(`groups/${this.$route.params.id}`).then(response => {
           const result = response.data;
           this.name = result.name;
           this.active = result.active;

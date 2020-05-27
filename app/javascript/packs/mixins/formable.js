@@ -1,9 +1,10 @@
 import { mapActions } from "vuex";
 import inputable from "./inputable.js";
+import fetchable from "./fetchable.js";
 
 export default {
   name: "Formable",
-  mixins: [inputable],
+  mixins: [inputable, fetchable],
   methods: {
     ...mapActions(["setCurrentMessage"]),
     catch_errors(error) {

@@ -8,7 +8,8 @@ export default new Vuex.Store({
   state: {
     currentMessage: null,
     currentMessageType: null,
-    openModalDelete: false
+    openModalDelete: false,
+    showLoading: false
   },
   mutations: {
     UPDATE_CURRENT_MESSAGE(state, message) {
@@ -19,6 +20,9 @@ export default new Vuex.Store({
     },
     UPDATE_OPEN_DELETE_MODAL(state, open) {
       state.openModalDelete = open;
+    },
+    UPDATE_SHOW_LOADING(state, show) {
+      state.showLoading = show;
     }
   },
   actions: {
@@ -36,6 +40,9 @@ export default new Vuex.Store({
     },
     setOpenModalDelete(context, open) {
       context.commit("UPDATE_OPEN_DELETE_MODAL", open);
+    },
+    setShowLoading(context, show) {
+      context.commit("UPDATE_SHOW_LOADING", show);
     }
   }
 });

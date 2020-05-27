@@ -69,7 +69,7 @@
     },
     created() {
       if (this.$route.params.id) {
-        api.get(`expenses/${this.$route.params.id}`).then(response => {
+        this.getWithLoading(`expenses/${this.$route.params.id}`).then(response => {
           const result = response.data;
           const expenseRecurrents = result.expense_recurrents.map(expense_recurrent => {
             return {
@@ -80,7 +80,7 @@
             }
           });
 
-          this.expense = {
+          this.expenseLoaded = {
             description: result.description,
             expenseType: result.expense_type,
             cardId: result.card_id,
@@ -89,7 +89,6 @@
             endAt: result.end_at,
             expenseRecurrents: expenseRecurrents
           }
-          this.expenseLoaded = this.expense;
         }).catch(error => {
           this.catch_errors(error);
         });
