@@ -39,7 +39,7 @@
               <i class="fas fa-sign-out-alt"></i>
             </span>
             <span class="is-hidden-desktop">
-              Sair
+              Logout
             </span>
           </a>
         </div>
