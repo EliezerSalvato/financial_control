@@ -9,6 +9,12 @@ Rails.application.routes.draw do
       resources :cards
       resources :expenses
       resources :incomes
+      resources :dashboard do
+        collection do
+          get :incomes
+          get :expenses
+        end
+      end
     end
   end
 

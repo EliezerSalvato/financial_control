@@ -5,7 +5,8 @@ export default {
   methods: {
     ...mapActions(["setShowLoading"]),
     setLoading(params, active) {
-      if (Object.entries(params).length == 0 || Object.entries(params.filter).length == 0) {
+
+      if (params.loading || Object.entries(params).length == 0 || Object.entries(params.filter).length == 0) {
         this.setShowLoading(active);
       }
     },

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_27_190953) do
+ActiveRecord::Schema.define(version: 2020_05_29_133548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -138,6 +138,24 @@ ActiveRecord::Schema.define(version: 2020_05_27_190953) do
     t.index ["description"], name: "index_incomes_on_description"
     t.index ["group_id"], name: "index_incomes_on_group_id"
     t.index ["user_id"], name: "index_incomes_on_user_id"
+  end
+
+  create_table "monthly_expenses", force: :cascade do |t|
+    t.string "expense_type"
+    t.string "description"
+    t.decimal "value"
+    t.date "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "monthly_incomes", force: :cascade do |t|
+    t.string "income_type"
+    t.string "description"
+    t.decimal "value"
+    t.date "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
