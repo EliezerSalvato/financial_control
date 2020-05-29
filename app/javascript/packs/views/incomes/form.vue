@@ -169,16 +169,16 @@
         }
       },
       showCard() {
-        return (this.IncomeTypes.SALARY == this.incomeType);
+        return ([this.IncomeTypes.CARD, this.IncomeTypes.SALARY].includes(this.incomeType));
       },
       showQuantity() {
         return (this.IncomeTypes.SALARY == this.incomeType);
       },
       showValue() {
-        return (this.IncomeTypes.CASH == this.incomeType);
+        return ([this.IncomeTypes.CARD, this.IncomeTypes.CASH].includes(this.incomeType));
       },
       showDate() {
-        return (this.IncomeTypes.CASH == this.incomeType);
+        return ([this.IncomeTypes.CARD, this.IncomeTypes.CASH].includes(this.incomeType));
       },
       showEndAt() {
         return (this.IncomeTypes.SALARY == this.incomeType);

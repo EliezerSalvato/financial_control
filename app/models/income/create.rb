@@ -22,11 +22,13 @@ class Income::Create < Micro::Case
     return if income_type.blank?
 
     income = case income_type
-              when IncomeTypes::SALARY
-                Income::Salary::Create
-              when IncomeTypes::CASH
-                Income::Cash::Create
-              end
+             when IncomeTypes::CARD
+               Income::Card::Create
+             when IncomeTypes::SALARY
+               Income::Salary::Create
+             when IncomeTypes::CASH
+               Income::Cash::Create
+             end
 
     income.call(user: user, params: income_params)
   end

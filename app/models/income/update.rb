@@ -25,6 +25,8 @@ class Income::Update < Micro::Case
     return if income_type.blank?
 
     income_by_type = case income_type
+                     when IncomeTypes::CARD
+                       Income::Card::Update
                      when IncomeTypes::SALARY
                        Income::Salary::Update
                      when IncomeTypes::CASH

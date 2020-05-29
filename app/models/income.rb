@@ -56,24 +56,24 @@ class Income < ApplicationRecord
   def card_required?
     return unless valid_income_type?
 
-    salary?
+    (card? || salary?)
   end
 
   def value_required?
     return unless valid_income_type?
 
-    cash?
+    (card? || cash?)
   end
 
   def date_required?
     return unless valid_income_type?
 
-    cash?
+    (card? || cash?)
   end
 
   def end_at_required?
     return unless valid_income_type?
 
-    cash?
+    (card? || cash?)
   end
 end

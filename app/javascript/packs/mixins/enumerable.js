@@ -41,9 +41,11 @@ const ExpenseTypes = {
 Object.freeze(ExpenseTypes)
 
 const IncomeTypes = {
+  CARD: "card",
   SALARY: "salary",
   CASH: "cash",
   values: {
+    card: "Card",
     salary: "Salary",
     cash: "Cash"
   }
