@@ -1,5 +1,5 @@
 class MonthlyIncome < ApplicationRecord
-  def self.by_month_and_year(month, year)
+  def self.by_month_and_year(user_id, month, year)
     MonthlyIncome.find_by_sql(
       <<-SQL
         SELECT cards.name AS income_type,
@@ -22,7 +22,8 @@ class MonthlyIncome < ApplicationRecord
                ORDER BY income_recurrents.date DESC
                   LIMIT 1
                )
-         WHERE cards.card_type = 'Credit'
+         WHERE incomes.user_id = #{user_id}
+           AND cards.card_type = 'Credit'
            AND (
                  incomes.end_at IS NULL OR
                  incomes.end_at >= (
@@ -54,7 +55,8 @@ class MonthlyIncome < ApplicationRecord
                          WHEN income_type = 'cash' THEN 'Cash'
                        END AS type
                ) AS types
-         WHERE types.type IS NOT NULL
+         WHERE incomes.user_id = #{user_id}
+           AND types.type IS NOT NULL
            AND (incomes.end_at IS NULL OR incomes.end_at >= make_date(#{year}, #{month}, 1))
       ORDER BY date, description
       SQL

@@ -5,7 +5,7 @@ class Income::MonthlyIncome::Fetch < Micro::Case
   validates :params, type: ActionController::Parameters
 
   def call!
-    incomes = MonthlyIncome.by_month_and_year(params[:month], params[:year])
+    incomes = MonthlyIncome.by_month_and_year(user.id, params[:month], params[:year])
 
     Success { { data: incomes } }
   end

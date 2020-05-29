@@ -1,5 +1,5 @@
 class MonthlyExpense < ApplicationRecord
-  def self.by_month_and_year(month, year)
+  def self.by_month_and_year(user_id, month, year)
     MonthlyExpense.find_by_sql(
       <<-SQL
         SELECT cards.name AS expense_type,
@@ -22,7 +22,8 @@ class MonthlyExpense < ApplicationRecord
                ORDER BY expense_recurrents.date DESC
                   LIMIT 1
                )
-         WHERE cards.card_type = 'Credit'
+         WHERE expenses.user_id = #{user_id}
+           AND cards.card_type = 'Credit'
            AND (
                  expenses.end_at IS NULL OR
                  expenses.end_at >= (
@@ -54,7 +55,8 @@ class MonthlyExpense < ApplicationRecord
                          WHEN expense_type = 'cash' THEN 'Cash'
                        END AS type
                ) AS types
-         WHERE types.type IS NOT NULL
+         WHERE expenses.user_id = #{user_id}
+           AND types.type IS NOT NULL
            AND (expenses.end_at IS NULL OR expenses.end_at >= make_date(#{year}, #{month}, 1))
       ORDER BY date, description
       SQL
