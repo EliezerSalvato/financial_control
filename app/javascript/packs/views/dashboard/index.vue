@@ -1,5 +1,5 @@
 <template>
-  <div class="is-fullheight">
+  <div>
     <Loading v-show="showLoading" />
 
     <div v-show="!showLoading" class="dashboard">

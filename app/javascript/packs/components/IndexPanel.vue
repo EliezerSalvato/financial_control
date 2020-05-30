@@ -1,5 +1,5 @@
 <template>
-  <div class="columns is-fullheight">
+  <div class="columns">
     <Loading v-show="showLoading" />
 
     <div v-show="!showLoading" class="column">

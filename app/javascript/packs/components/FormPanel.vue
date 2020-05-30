@@ -1,5 +1,5 @@
 <template>
-  <div class="columns is-fullheight">
+  <div class="columns">
     <Loading v-if="showLoading" />
 
     <div v-else class="column">

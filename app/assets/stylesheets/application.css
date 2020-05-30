@@ -14,14 +14,11 @@
  *= require_self
  */
 
- .is-fullheight.columns {
-    min-height: calc(100vh - (3.25rem - .75rem) - 25px);
-  }
-
-.is-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.nav-footer .content {
+  width: 100%;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 15px;
 }
 
 .notification {
@@ -38,10 +35,6 @@
   background-color: #feecf0 !important;
 }
 
-.panel {
-  margin-bottom: 40px !important;
-}
-
-.panel-block {
-  padding: 15px !important;
+.columns:last-child {
+  margin-bottom: 5px !important;
 }

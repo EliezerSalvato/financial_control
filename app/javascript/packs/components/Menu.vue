@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar is-primary">
+  <nav class="navbar is-fixed-top is-primary">
     <div class="container">
       <div class="navbar-brand">
         <a href="/" class="navbar-item has-text-weight-bold">

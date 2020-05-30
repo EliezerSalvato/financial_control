@@ -6,6 +6,15 @@
   border-radius: 20px;
 }
 
+.login {
+  min-height: calc(100vh - 104px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 .login-screen {
   @extend %screen;
 
