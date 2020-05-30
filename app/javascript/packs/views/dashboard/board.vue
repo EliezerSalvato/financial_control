@@ -1,8 +1,11 @@
 <template>
   <nav class="items panel">
-    <p class="panel-heading">
-      {{ type }}
-    </p>
+    <div class="panel-heading">
+      <p>{{ type }}</p>
+      <router-link class="button is-primary" :to="route">
+        <i class="fa fa-plus"></i>
+      </router-link>
+    </div>
     <div class="panel-block">
       <table class="table is-bordered is-striped is-hoverable is-fullwidth">
         <thead>
@@ -102,6 +105,9 @@
         return (this.items || []).map(item => {
           return Number(item.value)
         }).reduce((sum, value) => sum + value, 0);
+      },
+      route() {
+        return `/${this.type.toLowerCase()}/new`;
       }
     },
     methods: {
@@ -126,6 +132,21 @@
 <style scoped>
   .panel-block {
     padding: 5px !important;
+  }
+
+  .panel-heading {
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+  }
+
+  .panel-heading p {
+    flex-grow: 1;
+    align-self: center;
+  }
+
+  .panel-heading a {
+    flex-grow: 0;
   }
 
   .expand_header {
