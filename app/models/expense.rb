@@ -58,7 +58,7 @@ class Expense < ApplicationRecord
   def card_required?
     return unless valid_expense_type?
 
-    (card? || installment? || recurring_installments? || recurring_expense?)
+    (card? || installment? || recurring_installments? || card_recurring_expense?)
   end
 
   def quantity_required?

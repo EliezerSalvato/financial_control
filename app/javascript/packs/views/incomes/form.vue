@@ -80,7 +80,6 @@
           label="Quantity"
           :minValue="1"
           :maxValue="999"
-          :required="quantityRequired"
           :error="error('quantity')"
         />
       </div>
@@ -199,10 +198,15 @@
         }
       },
       showCard() {
-        return ([this.IncomeTypes.CARD, this.IncomeTypes.SALARY].includes(this.incomeType));
+        return ([this.IncomeTypes.CARD, this.IncomeTypes.CARD_RECURRING_INCOME].includes(this.incomeType));
       },
       showQuantity() {
-        return (this.IncomeTypes.SALARY == this.incomeType);
+        return (
+          [
+            this.IncomeTypes.CARD_RECURRING_INCOME,
+            this.IncomeTypes.CASH_RECURRING_INCOME
+          ].includes(this.incomeType)
+        );
       },
       showValue() {
         return ([this.IncomeTypes.CARD, this.IncomeTypes.CASH].includes(this.incomeType));
@@ -211,13 +215,20 @@
         return ([this.IncomeTypes.CARD, this.IncomeTypes.CASH].includes(this.incomeType));
       },
       showEndAt() {
-        return (this.IncomeTypes.SALARY == this.incomeType);
+        return (
+          [
+            this.IncomeTypes.CARD_RECURRING_INCOME,
+            this.IncomeTypes.CASH_RECURRING_INCOME
+          ].includes(this.incomeType)
+        );
       },
       showRecurrence() {
-        return (this.IncomeTypes.SALARY == this.incomeType);
-      },
-      quantityRequired() {
-        return (this.IncomeTypes.CASH == this.incomeType);
+        return (
+          [
+            this.IncomeTypes.CARD_RECURRING_INCOME,
+            this.IncomeTypes.CASH_RECURRING_INCOME
+          ].includes(this.incomeType)
+        );
       }
     },
     methods: {
@@ -370,7 +381,8 @@
         }
 
         switch(this.incomeType) {
-          case this.IncomeTypes.SALARY:
+          case this.IncomeTypes.CARD_RECURRING_INCOME:
+          case this.IncomeTypes.CASH_RECURRING_INCOME:
             if (!this.incomeRecurrents.length) {
               this.addRecurrence();
             }

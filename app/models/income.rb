@@ -56,7 +56,7 @@ class Income < ApplicationRecord
   def card_required?
     return unless valid_income_type?
 
-    (card? || salary?)
+    (card? || card_recurring_income?)
   end
 
   def value_required?

@@ -26,10 +26,12 @@ class Expense::Create < Micro::Case
                 Expense::Card::Create
               when ExpenseTypes::INSTALLMENT, ExpenseTypes::RECURRING_INSTALLMENTS
                 Expense::Installment::Create
-              when ExpenseTypes::RECURRING_EXPENSE
-                Expense::RecurringExpense::Create
+              when ExpenseTypes::CARD_RECURRING_EXPENSE
+                Expense::CardRecurringExpense::Create
               when ExpenseTypes::CASH
                 Expense::Cash::Create
+              when ExpenseTypes::CASH_RECURRING_EXPENSE
+                Expense::CashRecurringExpense::Create
               end
 
     expense.call(user: user, params: expense_params)

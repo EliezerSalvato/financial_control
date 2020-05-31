@@ -24,10 +24,12 @@ class Income::Create < Micro::Case
     income = case income_type
              when IncomeTypes::CARD
                Income::Card::Create
-             when IncomeTypes::SALARY
-               Income::Salary::Create
+             when IncomeTypes::CARD_RECURRING_INCOME
+               Income::CardRecurringIncome::Create
              when IncomeTypes::CASH
                Income::Cash::Create
+             when IncomeTypes::CASH_RECURRING_INCOME
+               Income::CashRecurringIncome::Create
              end
 
     income.call(user: user, params: income_params)

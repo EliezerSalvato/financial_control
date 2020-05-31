@@ -203,23 +203,42 @@
       },
       showCard() {
         return (
-          this.installments + [this.ExpenseTypes.CARD, this.ExpenseTypes.RECURRING_EXPENSE]
+          this.installments.concat(this.ExpenseTypes.CARD, this.ExpenseTypes.CARD_RECURRING_EXPENSE)
         ).includes(this.expenseType);
       },
       showQuantity() {
-        return (this.installments + [this.ExpenseTypes.RECURRING_EXPENSE]).includes(this.expenseType);
+        return (
+          this.installments.concat(
+            this.ExpenseTypes.CARD_RECURRING_EXPENSE,
+            this.ExpenseTypes.CASH_RECURRING_EXPENSE
+          )
+        ).includes(this.expenseType);
       },
       showValue() {
-        return (this.installments + [this.ExpenseTypes.CARD, this.ExpenseTypes.CASH]).includes(this.expenseType);
+        return (
+          this.installments.concat(this.ExpenseTypes.CARD, this.ExpenseTypes.CASH)
+        ).includes(this.expenseType);
       },
       showDate() {
-        return (this.installments + [this.ExpenseTypes.CARD, this.ExpenseTypes.CASH]).includes(this.expenseType);
+        return (
+          this.installments.concat(this.ExpenseTypes.CARD, this.ExpenseTypes.CASH)
+        ).includes(this.expenseType);
       },
       showEndAt() {
-        return (this.ExpenseTypes.RECURRING_EXPENSE == this.expenseType);
+        return (
+          [
+            this.ExpenseTypes.CARD_RECURRING_EXPENSE,
+            this.ExpenseTypes.CASH_RECURRING_EXPENSE
+          ]
+        ).includes(this.expenseType);
       },
       showRecurrence() {
-        return ([this.ExpenseTypes.RECURRING_EXPENSE].includes(this.expenseType));
+        return (
+          [
+            this.ExpenseTypes.CARD_RECURRING_EXPENSE,
+            this.ExpenseTypes.CASH_RECURRING_EXPENSE
+          ]
+        ).includes(this.expenseType);
       },
       quantityRequired() {
         return this.installments.includes(this.expenseType);
@@ -375,7 +394,8 @@
         }
 
         switch(this.expenseType) {
-          case this.ExpenseTypes.RECURRING_EXPENSE:
+          case this.ExpenseTypes.CARD_RECURRING_EXPENSE:
+          case this.ExpenseTypes.CASH_RECURRING_EXPENSE:
             if (!this.expenseRecurrents.length) {
               this.addRecurrence();
             }

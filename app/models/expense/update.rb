@@ -29,10 +29,12 @@ class Expense::Update < Micro::Case
                         Expense::Card::Update
                       when ExpenseTypes::INSTALLMENT, ExpenseTypes::RECURRING_INSTALLMENTS
                         Expense::Installment::Update
-                      when ExpenseTypes::RECURRING_EXPENSE
-                        Expense::RecurringExpense::Update
+                      when ExpenseTypes::CARD_RECURRING_EXPENSE
+                        Expense::CardRecurringExpense::Update
                       when ExpenseTypes::CASH
                         Expense::Cash::Update
+                      when ExpenseTypes::CASH_RECURRING_EXPENSE
+                        Expense::CashRecurringExpense::Update
                       end
 
     expense_by_type.call(expense: expense, params: expense_params)

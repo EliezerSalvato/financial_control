@@ -1,13 +1,12 @@
-class Expense::RecurringExpense::Params
+class Income::CashRecurringIncome::Params
   def self.to_save(params)
     params.permit(
       :description,
-      :card_id,
       :group_id,
       :category_id,
-      :expense_type,
+      :income_type,
       :end_at,
-      expense_recurrents_attributes: [
+      income_recurrents_attributes: [
         :id, :date, :value, :_destroy
       ]
     ).merge(

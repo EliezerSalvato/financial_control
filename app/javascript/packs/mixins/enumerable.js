@@ -28,26 +28,30 @@ const ExpenseTypes = {
   CARD: "card",
   INSTALLMENT: "installment",
   RECURRING_INSTALLMENTS: "recurring_installments",
-  RECURRING_EXPENSE: "recurring_expense",
+  CARD_RECURRING_EXPENSE: "card_recurring_expense",
   CASH: "cash",
+  CASH_RECURRING_EXPENSE: "cash_recurring_expense",
   values: {
     card: "Card",
     installment: "Installment",
     recurring_installments: "Recurring Installments",
-    recurring_expense: "Recurring Expense",
-    cash: "Cash"
+    card_recurring_expense: "Card Recurring Expense",
+    cash: "Cash",
+    cash_recurring_expense: "Cash Recurring Expense"
   }
 }
 Object.freeze(ExpenseTypes)
 
 const IncomeTypes = {
   CARD: "card",
-  SALARY: "salary",
+  CARD_RECURRING_INCOME: "card_recurring_income",
   CASH: "cash",
+  CASH_RECURRING_INCOME: "cash_recurring_income",
   values: {
     card: "Card",
-    salary: "Salary",
-    cash: "Cash"
+    card_recurring_income: "Card Recurring Income",
+    cash: "Cash",
+    cash_recurring_income: "Cash Recurring Income"
   }
 }
 Object.freeze(IncomeTypes)

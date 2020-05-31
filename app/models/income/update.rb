@@ -27,10 +27,12 @@ class Income::Update < Micro::Case
     income_by_type = case income_type
                      when IncomeTypes::CARD
                        Income::Card::Update
-                     when IncomeTypes::SALARY
-                       Income::Salary::Update
+                     when IncomeTypes::CARD_RECURRING_INCOME
+                       Income::CardRecurringIncome::Update
                      when IncomeTypes::CASH
                        Income::Cash::Update
+                     when IncomeTypes::CASH_RECURRING_INCOME
+                       Income::CashRecurringIncome::Update
                      end
 
     income_by_type.call(income: income, params: income_params)

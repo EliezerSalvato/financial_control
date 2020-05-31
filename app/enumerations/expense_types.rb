@@ -3,8 +3,9 @@ class ExpenseTypes < EnumerateIt::Base
     :card,
     :installment,
     :recurring_installments,
-    :recurring_expense,
-    :cash
+    :card_recurring_expense,
+    :cash,
+    :cash_recurring_expense
   )
 
   sort_by :name
