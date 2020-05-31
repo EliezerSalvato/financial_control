@@ -47,4 +47,7 @@
 </script>
 
 <style scoped>
+  .modal {
+    margin-top: -15%;
+  }
 </style>

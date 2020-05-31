@@ -166,7 +166,14 @@
   }
 
   .expand span {
-    margin-top: 0;
+    margin-top: -2px;
+  }
+
+  @media (max-width: 768px) {
+    .expand span {
+      margin-top: 0;
+      margin-left: -1px;
+    }
   }
 
   .plus::before {
@@ -175,5 +182,10 @@
 
   .minus::before {
     content: '-'
+  }
+
+  table td {
+    overflow: hidden;
+    padding: 5px;
   }
 </style>

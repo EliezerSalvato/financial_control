@@ -59,4 +59,11 @@
   .items {
     grid-area: incomes;
   }
+
+  @media (max-width: 1023px) {
+    .items {
+      margin-top: -12px;
+      margin-bottom: 5px !important;
+    }
+  }
 </style>

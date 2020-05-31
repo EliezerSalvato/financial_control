@@ -117,7 +117,7 @@
     grid-area: balance;
     margin-bottom: 10px;
     text-align: center;
-    padding: 10px;
+    padding: 5px;
   }
 
   .balance b {

@@ -34,10 +34,6 @@
 </script>
 
 <style scoped>
-  .modal {
-    margin-top: -15%;
-  }
-
   .modal-card {
     max-width: calc(100% - 30px);
   }
