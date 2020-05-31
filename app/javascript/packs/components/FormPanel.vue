@@ -16,7 +16,7 @@
 
             <div class="field">
               <input type="submit" value="Save" class="button is-link" @click.prevent="save">
-              <router-link class="button" :to="`/${pluralizedName}`">Back</router-link>
+              <router-link v-if="!hiddenBack" class="button" :to="`/${pluralizedName}`">Back</router-link>
             </div>
           </form>
         </div>
@@ -37,7 +37,8 @@
     },
     props: {
       type: String,
-      modelName: String
+      modelName: String,
+      hiddenBack: { type: Boolean, default: false }
     },
     computed: {
       ...mapState(["showLoading"]),

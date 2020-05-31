@@ -26,7 +26,7 @@
       </div>
     </div>
     <div v-if="showCard" class="field">
-      <div class="control">
+      <div class="control with-add">
         <Select
           v-model="cardId"
           name="card"
@@ -36,10 +36,13 @@
           :items="cards"
           :error="error('card')"
         />
+        <a class="button is-primary" @click.prevent="openModalCard">
+          <i class="fa fa-plus"></i>
+        </a>
       </div>
     </div>
     <div class="field">
-      <div class="control">
+      <div class="control with-add">
         <Select
           v-model="categoryId"
           name="category"
@@ -49,10 +52,13 @@
           :items="categories"
           :error="error('category')"
         />
+        <a class="button is-primary" @click.prevent="openModalCategory">
+          <i class="fa fa-plus"></i>
+        </a>
       </div>
     </div>
     <div class="field">
-      <div class="control">
+      <div class="control with-add">
         <Select
           v-model="groupId"
           name="group"
@@ -61,6 +67,9 @@
           :items="groups"
           :error="error('group')"
         />
+        <a class="button is-primary" @click.prevent="openModalGroup">
+          <i class="fa fa-plus"></i>
+        </a>
       </div>
     </div>
     <div v-if="showQuantity" class="field">
@@ -116,6 +125,17 @@
       :currentErrors="errors"
       @change:date="changeDate"
     />
+
+    <Modal :openModal="openModal">
+      <template #body>
+        <newCard v-if="modalType == 'card'" :modal="true" @new:card="newCard" />
+        <newGroup v-if="modalType == 'group'" :modal="true" @new:group="newGroup" />
+        <newCategory v-if="modalType == 'category'" :modal="true" @new:category="newCategory" />
+      </template>
+      <template #footer>
+        <button class="button" @click.prevent="closeModal">Close</button>
+      </template>
+    </Modal>
   </div>
 </template>
 
@@ -124,6 +144,10 @@
   import { api } from "../../services.js";
   import formable from "../../mixins/formable.js";
   import enumerable from "../../mixins/enumerable.js";
+  import Modal from "../../components/Modal.vue";
+  import newCard from "../cards/new.vue";
+  import newGroup from "../groups/new.vue";
+  import newCategory from "../categories/new.vue";
   import FormPanel from "../../components/FormPanel.vue";
   import IncomeRecurrents from "./income_recurrents/form.vue";
 
@@ -132,6 +156,10 @@
     mixins: [formable, enumerable],
     components: {
       FormPanel,
+      newCard,
+      newGroup,
+      newCategory,
+      Modal,
       IncomeRecurrents
     },
     props: {
@@ -157,7 +185,9 @@
         cards: null,
         categories: null,
         groups: null,
-        endAtWatcher: null
+        endAtWatcher: null,
+        modalType: null,
+        openModal: false
       }
     },
     computed: {
@@ -191,11 +221,24 @@
       }
     },
     methods: {
+      closeModal() {
+        this.modalType = null;
+        this.openModal = false;
+      },
       getCards() {
         api.get("cards", this.defaultQuery).then(response => {
           const result = response.data;
           this.cards = result.data;
         });
+      },
+      newCard(cardId) {
+        this.getCards();
+        this.cardId = cardId;
+        this.closeModal();
+      },
+      openModalCard() {
+        this.modalType = "card";
+        this.openModal = true;
       },
       getCategories() {
         api.get("categories", this.defaultQuery).then(response => {
@@ -203,11 +246,29 @@
           this.categories = result.data;
         });
       },
+      newCategory(categoryId) {
+        this.getCategories();
+        this.categoryId = categoryId;
+        this.closeModal();
+      },
+      openModalCategory() {
+        this.modalType = "category";
+        this.openModal = true;
+      },
       getGroups() {
         api.get("groups", this.defaultQuery).then(response => {
           const result = response.data;
           this.groups = result.data;
         });
+      },
+      newGroup(groupId) {
+        this.getGroups();
+        this.groupId = groupId;
+        this.closeModal();
+      },
+      openModalGroup() {
+        this.modalType = "group";
+        this.openModal = true;
       },
       addRecurrence() {
         this.incomeRecurrents.push({ id: null, date: null, value: null });
@@ -360,5 +421,19 @@
 <style scoped>
   .income {
     margin-bottom: 15px;
+  }
+
+  .with-add {
+    display: flex;
+  }
+
+  .with-add div {
+    flex-grow: 1;
+  }
+
+  .with-add a {
+    flex-grow: 0;
+    margin-top: 32px;
+    margin-left: 5px;
   }
 </style>

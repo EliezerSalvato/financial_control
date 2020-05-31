@@ -2,6 +2,7 @@
   <FormPanel
     type="new"
     modelName="card"
+    :hiddenBack="modal"
     @call:save="save"
   >
     <template #form>
@@ -52,6 +53,9 @@
       creditsForm,
       debitsForm
     },
+    props: {
+      modal: { type: Boolean, default: false }
+    },
     data() {
       return {
         name: null,
@@ -84,9 +88,13 @@
 
         api.post("cards", params).then(response => {
           if (response["status"] === 201) {
-            const message = "Card was successfully created.";
-            this.setCurrentMessage({ message: message, type: "success" });
-            this.$router.push({ path: "/cards", query: { keepMessage: true } });
+            if (this.modal) {
+              this.$emit("new:card", response.data.id)
+            } else {
+              const message = "Card was successfully created.";
+              this.setCurrentMessage({ message: message, type: "success" });
+              this.$router.push({ path: "/cards", query: { keepMessage: true } });
+            }
           }
         }).catch(error => {
           this.catch_errors(error);

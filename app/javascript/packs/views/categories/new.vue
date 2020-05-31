@@ -2,6 +2,7 @@
   <FormPanel
     type="new"
     modelName="category"
+    :hiddenBack="modal"
     @call:save="save"
   >
     <template #form>
@@ -32,6 +33,9 @@
     components: {
       FormPanel
     },
+    props: {
+      modal: { type: Boolean, default: false }
+    },
     data() {
       return {
         name: null
@@ -45,9 +49,13 @@
 
         api.post("categories", params).then(response => {
           if (response["status"] === 201) {
-            const message = "Category was successfully created.";
-            this.setCurrentMessage({ message: message, type: "success" });
-            this.$router.push({ path: "/categories", query: { keepMessage: true } });
+            if (this.modal) {
+              this.$emit("new:category", response.data.id)
+            } else {
+              const message = "Category was successfully created.";
+              this.setCurrentMessage({ message: message, type: "success" });
+              this.$router.push({ path: "/categories", query: { keepMessage: true } });
+            }
           }
         }).catch(error => {
           this.catch_errors(error);
