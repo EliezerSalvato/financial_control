@@ -61,6 +61,16 @@
         cards: null
       }
     },
+    computed: {
+      defaultQuery() {
+        return {
+          filter: {
+            by_active: true
+          },
+          show_all: true
+        }
+      }
+    },
     methods: {
       ...mapActions(["setOpenModalDelete", "setCurrentMessage", "setShowLoading"]),
       getData() {

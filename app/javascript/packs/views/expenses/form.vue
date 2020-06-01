@@ -195,7 +195,8 @@
         return {
           filter: {
             by_active: true
-          }
+          },
+          show_all: true
         }
       },
       installments() {

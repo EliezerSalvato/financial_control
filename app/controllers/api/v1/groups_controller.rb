@@ -48,6 +48,7 @@ class Api::V1::GroupsController < ApplicationController
 
   def use_scopes(result)
     result.value[:data] = apply_scopes(result.value[:data])
+    result.value[:data] = result.value[:data].per(current_user.groups.count) if params[:show_all]
     result
   end
 end
