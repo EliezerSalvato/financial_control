@@ -59,8 +59,11 @@ GEM
     audited (4.9.0)
       activerecord (>= 4.2, < 6.1)
     bcrypt (3.1.13)
+    bcrypt (3.1.13-java)
     bindex (0.8.1)
     bootsnap (1.4.6)
+      msgpack (~> 1.0)
+    bootsnap (1.4.6-java)
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
@@ -77,6 +80,9 @@ GEM
       activesupport (>= 4.2.0)
     erubi (1.9.0)
     ffi (1.13.1)
+    ffi (1.13.1-java)
+    ffi (1.13.1-x64-mingw32)
+    ffi (1.13.1-x86-mingw32)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     has_scope (0.7.2)
@@ -113,18 +119,35 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.14.1)
     msgpack (1.3.3)
+    msgpack (1.3.3-java)
+    msgpack (1.3.3-x64-mingw32)
+    msgpack (1.3.3-x86-mingw32)
     nio4r (2.5.2)
+    nio4r (2.5.2-java)
     nokogiri (1.10.9)
+      mini_portile2 (~> 2.4.0)
+    nokogiri (1.10.9-java)
+    nokogiri (1.10.9-x64-mingw32)
+      mini_portile2 (~> 2.4.0)
+    nokogiri (1.10.9-x86-mingw32)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pg (1.2.3)
+    pg (1.2.3-x64-mingw32)
+    pg (1.2.3-x86-mingw32)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    pry (0.13.1-java)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+      spoon (~> 0.0)
     pry-byebug (3.9.0)
       byebug (~> 11.0)
       pry (~> 0.13.0)
     puma (4.3.5)
+      nio4r (~> 2.0)
+    puma (4.3.5-java)
       nio4r (~> 2.0)
     rack (2.2.3)
     rack-proxy (0.6.5)
@@ -169,12 +192,16 @@ GEM
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
+    sassc (2.4.0-x64-mingw32)
+      ffi (~> 1.9)
     sassc-rails (2.1.2)
       railties (>= 4.0.0)
       sassc (>= 2.0)
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    spoon (0.0.6)
+      ffi
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -188,6 +215,7 @@ GEM
       sprockets (>= 3.0.0)
     thor (1.0.1)
     thread_safe (0.3.6)
+    thread_safe (0.3.6-java)
     tilt (2.0.10)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
@@ -196,6 +224,8 @@ GEM
       activemodel (>= 3.2)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2020.1)
+      tzinfo (>= 1.0.0)
     u-attributes (1.2.0)
     u-case (2.3.1)
       u-attributes (~> 1.1)
@@ -212,11 +242,17 @@ GEM
       railties (>= 4.2)
     websocket-driver (0.7.2)
       websocket-extensions (>= 0.1.0)
+    websocket-driver (0.7.2-java)
+      websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     zeitwerk (2.3.0)
 
 PLATFORMS
+  java
   ruby
+  x64-mingw32
+  x86-mingw32
+  x86-mswin32
 
 DEPENDENCIES
   audited (~> 4.9)
@@ -239,6 +275,7 @@ DEPENDENCIES
   u-case (~> 2.3)
   web-console (>= 3.3.0)
   webpacker (~> 4.0)
+  websocket-extensions (>= 0.1.4)
 
 RUBY VERSION
    ruby 2.6.3p62

@@ -16,6 +16,7 @@ gem 'type_validator', '~> 1.0'
 gem 'has_scope'
 gem 'kaminari'
 gem 'enumerate_it'
+gem 'websocket-extensions', '>= 0.1.4'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
