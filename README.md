@@ -1,24 +1,46 @@
-# README
+# Financial Control
+> Simple financial control system to organize your incomes and expenses.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is fully responsive and you can try it on [Financial Control](https://simple-financial-control.herokuapp.com/).
 
-Things you may want to cover:
+![Financial Control](https://user-images.githubusercontent.com/5563768/85229764-212f5980-b3c2-11ea-9d92-e28194763984.png)
 
-* Ruby version
+## Installation
 
-* System dependencies
+I recommend that you use [asdf](https://github.com/asdf-vm/asdf) to install ruby.
 
-* Configuration
+```sh
+asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
+```
+```sh
+asdf install ruby 2.6.3
+```
+```sh
+asdf global ruby 2.6.3
+```
+```sh
+gem install bundler
+```
+```sh
+bundle install
+```
 
-* Database creation
+You will need some version of [Postgres](https://www.postgresql.org/download/) installed.
 
-* Database initialization
+```sh
+bundle exec rails db:create
+```
+```sh
+bundle exec rails db:migrate
+```
 
-* How to run the test suite
+I recommend that you use [Yarn](https://classic.yarnpkg.com/) to install node dependencies.
 
-* Services (job queues, cache servers, search engines, etc.)
+```sh
+yarn install
+```
 
-* Deployment instructions
-
-* ...
+And finally:
+```sh
+bundle exec rails server
+```
