@@ -7,6 +7,21 @@ class Group::Fetch < Micro::Case
   def call!
     groups = Group.by_user_id(user.id).ordered
 
-    Success { { data: groups } }
+    filter_as_json = params[:filter] || '{}'
+    filter = JSON.parse(filter_as_json).with_indifferent_access
+
+    if name = filter[:by_name]
+      groups = groups.by_name(name)
+    end
+
+    if name = filter[:by_name]
+      groups = groups.by_name(name)
+    end
+
+    if active = filter[:by_active]
+      groups = groups.by_active(active)
+    end
+
+    Success { { relation: groups } }
   end
 end

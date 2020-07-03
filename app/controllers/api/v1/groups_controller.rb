@@ -1,9 +1,12 @@
 class Api::V1::GroupsController < ApplicationController
+  FindAll = Micro::Case::Flow([
+    Group::Fetch,
+    Paginate
+  ])
+
   def index
-    Group::Fetch
-      .call(user: current_user, params: params)
-      .then { |result| use_scopes(result) }
-      .then(Group::Paginatable)
+    FindAll
+      .call(user: current_user, params: params, serialize: Group::Serialize)
       .on_success { |result| render_json(200, result[:data]) }
   end
 
@@ -42,13 +45,5 @@ class Api::V1::GroupsController < ApplicationController
       .on_failure(:group_not_found) { render_json(404, error: { id: 'not found' }) }
       .on_failure(:invalid_group) { |error| render_json(422, error: error[:errors]) }
       .on_success { |result| render_json(200, result[:data]) }
-  end
-
-  private
-
-  def use_scopes(result)
-    result.value[:data] = apply_scopes(result.value[:data])
-    result.value[:data] = result.value[:data].per(current_user.groups.count) if params[:show_all]
-    result
   end
 end
