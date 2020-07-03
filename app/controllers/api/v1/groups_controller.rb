@@ -1,6 +1,7 @@
 class Api::V1::GroupsController < ApplicationController
   FindAll = Micro::Case::Flow([
-    Group::Fetch,
+    Group::FindAllForUser,
+    Group::Filter,
     Paginate
   ])
 
