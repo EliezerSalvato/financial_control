@@ -2,12 +2,13 @@ class Api::V1::GroupsController < ApplicationController
   FindAll = Micro::Case::Flow([
     Group::FindAllForUser,
     Group::Filter,
-    Paginate
+    Paginate,
+    Group::Serialize::PaginatedRelationAsJson
   ])
 
   def index
     FindAll
-      .call(user: current_user, params: params, serialize: Group::Serialize)
+      .call(user: current_user, params: params)
       .on_success { |result| render_json(200, result[:data]) }
   end
 

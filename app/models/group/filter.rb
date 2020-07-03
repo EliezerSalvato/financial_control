@@ -17,13 +17,13 @@ class Group::Filter < Micro::Case
   private
 
   def filter_by_name(relation, filter)
-    return relation unless value = filter[:by_name]
+    return relation unless value = filter[:by_name].presence
 
     relation.where('name ILIKE ?', "%#{value}%")
   end
 
   def filter_by_active(relation, filter)
-    return relation unless value = filter[:by_active]
+    return relation unless value = filter[:by_active].presence
 
     relation.where(active: value) if value
   end
