@@ -11,6 +11,3 @@ class Paginate < Micro::Case
     Success { { relation: paginated_relation } }
   end
 end
-
-
-
