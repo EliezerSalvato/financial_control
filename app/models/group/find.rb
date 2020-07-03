@@ -1,7 +1,7 @@
 class Group::Find < Micro::Case
   attributes :user, :group_id
 
-  validates :user, type: User
+  validates :user, kind: User
   validates :group_id, numericality: { only_integer: true }
 
   def call!

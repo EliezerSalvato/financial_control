@@ -4,7 +4,7 @@ class Group::Destroy < Micro::Case
 
   attribute :group
 
-  validates :group, type: Group
+  validates :group, kind: Group
 
   def call!
     group.destroy if group.valid?

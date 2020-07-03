@@ -1,8 +1,8 @@
 class Income::CardRecurringIncome::Update < Micro::Case
   attributes :income, :params
 
-  validates :income, type: Income
-  validates :params, type: ActionController::Parameters
+  validates :income, kind: Income
+  validates :params, kind: ActionController::Parameters
 
   def call!
     income_params = Income::CardRecurringIncome::Params.to_save(params)

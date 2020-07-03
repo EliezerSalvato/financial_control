@@ -10,7 +10,7 @@ class Expense::Serialize
   class AsJson < Micro::Case
     attribute :expense
 
-    validates :expense, type: Expense
+    validates :expense, kind: Expense
 
     def call!
       return Success { { data: Expense::Serialize.as_json(expense) } } if expense.valid?

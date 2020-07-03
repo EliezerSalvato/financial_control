@@ -4,7 +4,7 @@ class Income::Destroy < Micro::Case
 
   attribute :income
 
-  validates :income, type: Income
+  validates :income, kind: Income
 
   def call!
     income.destroy if income.valid?

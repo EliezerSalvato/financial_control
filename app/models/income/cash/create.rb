@@ -1,8 +1,8 @@
 class Income::Cash::Create < Micro::Case
   attributes :user, :params
 
-  validates :user, type: User
-  validates :params, type: ActionController::Parameters
+  validates :user, kind: User
+  validates :params, kind: ActionController::Parameters
 
   def call!
     income_params = Income::Cash::Params.to_save(params)

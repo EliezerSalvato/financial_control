@@ -4,8 +4,8 @@ class Card::Update < Micro::Case
 
   attributes :card, :params
 
-  validates :card, type: Card
-  validates :params, type: ActionController::Parameters
+  validates :card, kind: Card
+  validates :params, kind: ActionController::Parameters
 
   def call!
     card_params = Card::Params.to_save(params)

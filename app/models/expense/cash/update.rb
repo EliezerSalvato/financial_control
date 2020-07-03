@@ -1,8 +1,8 @@
 class Expense::Cash::Update < Micro::Case
   attributes :expense, :params
 
-  validates :expense, type: Expense
-  validates :params, type: ActionController::Parameters
+  validates :expense, kind: Expense
+  validates :params, kind: ActionController::Parameters
 
   def call!
     expense_params = Expense::Cash::Params.to_save(params)

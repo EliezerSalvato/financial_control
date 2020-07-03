@@ -10,7 +10,7 @@ class Card::Serialize
   class AsJson < Micro::Case
     attribute :card
 
-    validates :card, type: Card
+    validates :card, kind: Card
 
     def call!
       return Success { { data: Card::Serialize.as_json(card) } } if card.valid?

@@ -10,7 +10,7 @@ class Category::Serialize
   class AsJson < Micro::Case
     attribute :category
 
-    validates :category, type: Category
+    validates :category, kind: Category
 
     def call!
       return Success { { data: Category::Serialize.as_json(category) } } if category.valid?

@@ -10,7 +10,7 @@ class Group::Serialize
   class AsJson < Micro::Case
     attribute :group
 
-    validates :group, type: Group
+    validates :group, kind: Group
 
     def call!
       return Success { { data: Group::Serialize.as_json(group) } } if group.valid?
