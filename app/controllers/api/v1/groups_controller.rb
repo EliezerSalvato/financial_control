@@ -1,9 +1,10 @@
 class Api::V1::GroupsController < ApplicationController
   def index
-    Group::FindAll::WithPagination
+    Group::FindAllForUser
       .call(user: current_user, params: params)
-      .then(Group::Serialize::PaginatedRelationAsJson)
-      .on_success { |result| render_json(200, result[:data]) }
+      .then(Paginate)
+      .then(Serialize::PaginatedRelationAsJson, serializer: Group::Serialize)
+      .on_success { |result| render_json(200, result) }
   end
 
   def show
