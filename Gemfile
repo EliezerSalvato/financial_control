@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3'
+ruby '2.6.5'
 
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 gem 'pg', '>= 0.18', '< 2.0'
@@ -11,8 +11,7 @@ gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 gem 'devise'
 gem 'audited', '~> 4.9'
-gem 'u-case', '~> 2.3', require: 'u-case/with_validation'
-gem 'type_validator', '~> 1.0'
+gem 'u-case', '~> 2.5', require: 'u-case/with_activemodel_validation'
 gem 'has_scope'
 gem 'kaminari'
 gem 'enumerate_it'

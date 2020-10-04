@@ -102,6 +102,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
+    kind (3.1.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -220,14 +221,13 @@ GEM
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
-    type_validator (1.0.0)
-      activemodel (>= 3.2)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     tzinfo-data (1.2020.1)
       tzinfo (>= 1.0.0)
     u-attributes (1.2.0)
-    u-case (2.3.1)
+    u-case (2.6.0)
+      kind (~> 3.0)
       u-attributes (~> 1.1)
     warden (1.2.8)
       rack (>= 2.0.6)
@@ -270,15 +270,14 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
-  type_validator (~> 1.0)
   tzinfo-data
-  u-case (~> 2.3)
+  u-case (~> 2.5)
   web-console (>= 3.3.0)
   webpacker (~> 4.0)
   websocket-extensions (>= 0.1.4)
 
 RUBY VERSION
-   ruby 2.6.3p62
+   ruby 2.6.5p114
 
 BUNDLED WITH
    2.1.2

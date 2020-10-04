@@ -3,14 +3,10 @@ class Group::Serialize
     group.as_json(except: [:user_id], methods: :description)
   end
 
-  def self.collection_as_json(groups)
-    groups.map { |group| as_json(group) }
-  end
-
   class AsJson < Micro::Case
     attribute :group
 
-    validates :group, type: Group
+    validates :group, kind: Group
 
     def call!
       return Success { { data: Group::Serialize.as_json(group) } } if group.valid?

@@ -4,7 +4,7 @@ class Card::Destroy < Micro::Case
 
   attribute :card
 
-  validates :card, type: Card
+  validates :card, kind: Card
 
   def call!
     card.destroy if card.valid?

@@ -1,7 +1,7 @@
 class Income::Find < Micro::Case
   attributes :user, :income_id
 
-  validates :user, type: User
+  validates :user, kind: User
   validates :income_id, numericality: { only_integer: true }
 
   def call!

@@ -1,10 +1,10 @@
 class Api::V1::GroupsController < ApplicationController
   def index
-    Group::Fetch
+    Group::FindAllForUser
       .call(user: current_user, params: params)
-      .then { |result| use_scopes(result) }
-      .then(Group::Paginatable)
-      .on_success { |result| render_json(200, result[:data]) }
+      .then(Paginate)
+      .then(Serialize::PaginatedRelationAsJson, serializer: Group::Serialize)
+      .on_success { |result| render_json(200, result) }
   end
 
   def show
@@ -42,13 +42,5 @@ class Api::V1::GroupsController < ApplicationController
       .on_failure(:group_not_found) { render_json(404, error: { id: 'not found' }) }
       .on_failure(:invalid_group) { |error| render_json(422, error: error[:errors]) }
       .on_success { |result| render_json(200, result[:data]) }
-  end
-
-  private
-
-  def use_scopes(result)
-    result.value[:data] = apply_scopes(result.value[:data])
-    result.value[:data] = result.value[:data].per(current_user.groups.count) if params[:show_all]
-    result
   end
 end

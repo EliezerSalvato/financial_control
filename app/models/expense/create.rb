@@ -1,8 +1,8 @@
 class Expense::Create < Micro::Case
   attributes :user, :params
 
-  validates :user, type: User
-  validates :params, type: ActionController::Parameters
+  validates :user, kind: User
+  validates :params, kind: ActionController::Parameters
 
   def call!
     expense_params = Expense::Params.to_save(params)

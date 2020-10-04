@@ -4,8 +4,8 @@ class Category::Update < Micro::Case
 
   attributes :category, :params
 
-  validates :category, type: Category
-  validates :params, type: ActionController::Parameters
+  validates :category, kind: Category
+  validates :params, kind: ActionController::Parameters
 
   def call!
     category_params = Category::Params.to_save(params)

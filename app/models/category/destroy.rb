@@ -4,7 +4,7 @@ class Category::Destroy < Micro::Case
 
   attribute :category
 
-  validates :category, type: Category
+  validates :category, kind: Category
 
   def call!
     category.destroy if category.valid?

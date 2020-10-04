@@ -1,7 +1,7 @@
 class Category::Find < Micro::Case
   attributes :user, :category_id
 
-  validates :user, type: User
+  validates :user, kind: User
   validates :category_id, numericality: { only_integer: true }
 
   def call!

@@ -4,8 +4,8 @@ class Group::Update < Micro::Case
 
   attributes :group, :params
 
-  validates :group, type: Group
-  validates :params, type: ActionController::Parameters
+  validates :group, kind: Group
+  validates :params, kind: ActionController::Parameters
 
   def call!
     group_params = Group::Params.to_save(params)

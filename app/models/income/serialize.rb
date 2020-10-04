@@ -10,7 +10,7 @@ class Income::Serialize
   class AsJson < Micro::Case
     attribute :income
 
-    validates :income, type: Income
+    validates :income, kind: Income
 
     def call!
       return Success { { data: Income::Serialize.as_json(income) } } if income.valid?

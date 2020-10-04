@@ -4,7 +4,7 @@ class Expense::Destroy < Micro::Case
 
   attribute :expense
 
-  validates :expense, type: Expense
+  validates :expense, kind: Expense
 
   def call!
     expense.destroy if expense.valid?

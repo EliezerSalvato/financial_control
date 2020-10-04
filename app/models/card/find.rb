@@ -1,7 +1,7 @@
 class Card::Find < Micro::Case
   attributes :user, :card_id
 
-  validates :user, type: User
+  validates :user, kind: User
   validates :card_id, numericality: { only_integer: true }
 
   def call!

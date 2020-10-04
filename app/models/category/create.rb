@@ -1,8 +1,8 @@
 class Category::Create < Micro::Case
   attributes :user, :params
 
-  validates :user, type: User
-  validates :params, type: ActionController::Parameters
+  validates :user, kind: User
+  validates :params, kind: ActionController::Parameters
 
   def call!
     category_params = Category::Params.to_save(params)

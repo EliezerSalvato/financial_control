@@ -4,8 +4,8 @@ class Income::Update < Micro::Case
 
   attributes :income, :params
 
-  validates :income, type: Income
-  validates :params, type: ActionController::Parameters
+  validates :income, kind: Income
+  validates :params, kind: ActionController::Parameters
 
   def call!
     income_params = Income::Params.to_save(params)
