@@ -1,0 +1,28 @@
+version: '3'
+services:
+  app:
+    build: .
+    command: rails s -b 0.0.0.0
+    container_name: financial_control
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
+    links:
+      - postgres
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:12-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+volumes:
+  postgres_data:

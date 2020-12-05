@@ -5,42 +5,38 @@ This project is fully responsive and you can try it on [Financial Control](https
 
 ![Financial Control](https://user-images.githubusercontent.com/5563768/85229764-212f5980-b3c2-11ea-9d92-e28194763984.png)
 
-## Installation
+## Stack
 
-I recommend that you use [asdf](https://github.com/asdf-vm/asdf) to install ruby.
+**Ruby** (v2.7.2), **Rails** (v6.0.3), **VueJS** (v2), **PostgresSQL** (v12)
 
+## Setup
+
+Financial Control uses [Docker](https://docs.docker.com/get-docker/)
+
+Create a copy of `docker-compose.sample.yml`, name it `docker-compose.yml` (change accordingly).
+
+First, run the command below to build the project correctly:
 ```sh
-asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git
-```
-```sh
-asdf install ruby 2.6.3
-```
-```sh
-asdf global ruby 2.6.3
-```
-```sh
-gem install bundler
-```
-```sh
-bundle install
+make build
 ```
 
-You will need some version of [Postgres](https://www.postgresql.org/download/) installed.
-
+Second, run the command below to create the database and run the migrations:
 ```sh
-bundle exec rails db:create
-```
-```sh
-bundle exec rails db:migrate
+make firstrun
 ```
 
-I recommend that you use [Yarn](https://classic.yarnpkg.com/) to install node dependencies.
+That's it, access http://localhost:3000/ and have fun!
 
+After this you can just start or stop your project.
+
+To start the project run:
 ```sh
-yarn install
+make start
 ```
 
-And finally:
+To stop the project run:
 ```sh
-bundle exec rails server
+make stop
 ```
+
+See [Makefile](Makefile) for other existing commands.
