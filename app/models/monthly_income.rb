@@ -42,9 +42,7 @@ class MonthlyIncome < ApplicationRecord
                  SELECT income_recurrents.id
                    FROM income_recurrents
                   WHERE income_recurrents.income_id = incomes.id
-                    AND income_recurrents.date <= date_trunc(
-                          'day', make_date(#{year}, #{month}, 1) + interval '1 month' - interval '1 day'
-                        )
+                    AND income_recurrents.date < make_date(#{year}, #{month}, 1) + interval '1 month'
                ORDER BY income_recurrents.date DESC
                   LIMIT 1
                )

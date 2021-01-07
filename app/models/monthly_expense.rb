@@ -42,9 +42,7 @@ class MonthlyExpense < ApplicationRecord
                  SELECT expense_recurrents.id
                    FROM expense_recurrents
                   WHERE expense_recurrents.expense_id = expenses.id
-                    AND expense_recurrents.date <= date_trunc(
-                          'day', make_date(#{year}, #{month}, 1) + interval '1 month' - interval '1 day'
-                        )
+                    AND expense_recurrents.date < make_date(#{year}, #{month}, 1) + interval '1 month'
                ORDER BY expense_recurrents.date DESC
                   LIMIT 1
                )
