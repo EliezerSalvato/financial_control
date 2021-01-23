@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :groups
   has_many :categories
+  has_many :tags
   has_many :cards
   has_many :expenses
   has_many :incomes

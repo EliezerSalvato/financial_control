@@ -25,6 +25,10 @@ import categories from "./views/categories/index.vue";
 import newCategory from "./views/categories/new.vue";
 import editCategory from "./views/categories/edit.vue";
 
+import tags from "./views/tags/index.vue";
+import newTag from "./views/tags/new.vue";
+import editTag from "./views/tags/edit.vue";
+
 const router = new VueRouter({
   linkActiveClass: "is-active",
   mode: "history",
@@ -50,6 +54,10 @@ const router = new VueRouter({
     { path: "/categories", component: categories },
     { path: "/categories/new", component: newCategory },
     { path: "/categories/edit/:id", component: editCategory },
+
+    { path: "/tags", component: tags },
+    { path: "/tags/new", component: newTag },
+    { path: "/tags/edit/:id", component: editTag },
   ]
 });
 

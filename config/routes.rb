@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :groups
       resources :categories
+      resources :tags
       resources :cards
       resources :expenses
       resources :incomes

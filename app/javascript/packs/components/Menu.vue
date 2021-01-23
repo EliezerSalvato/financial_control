@@ -34,6 +34,9 @@
           <router-link class="navbar-item" to="/categories">
             Categories
           </router-link>
+          <router-link class="navbar-item" to="/tags">
+            Tags
+          </router-link>
           <a href="/users/sign_out" class="navbar-item">
             <span class="icon is-hidden-touch">
               <i class="fas fa-sign-out-alt"></i>
