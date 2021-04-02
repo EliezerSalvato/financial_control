@@ -2,6 +2,7 @@ import InputText from "../components/inputs/InputText.vue";
 import InputNumber from "../components/inputs/InputNumber.vue";
 import InputNumeric from "../components/inputs/InputNumeric.vue";
 import Select from "../components/inputs/Select.vue";
+import SelectMultiple from "../components/inputs/SelectMultiple.vue";
 import CheckBox from "../components/inputs/CheckBox.vue";
 import Calendar from "../components/inputs/Calendar.vue";
 
@@ -12,6 +13,7 @@ export default {
     InputNumber,
     InputNumeric,
     Select,
+    SelectMultiple,
     CheckBox,
     Calendar
   },
