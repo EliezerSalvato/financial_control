@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_23_162901) do
+ActiveRecord::Schema.define(version: 2021_04_02_182141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,15 @@ ActiveRecord::Schema.define(version: 2021_01_23_162901) do
     t.index ["expense_id"], name: "index_expense_recurrents_on_expense_id"
   end
 
+  create_table "expense_tags", force: :cascade do |t|
+    t.bigint "expense_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["expense_id"], name: "index_expense_tags_on_expense_id"
+    t.index ["tag_id"], name: "index_expense_tags_on_tag_id"
+  end
+
   create_table "expenses", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "card_id"
@@ -121,6 +130,15 @@ ActiveRecord::Schema.define(version: 2021_01_23_162901) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["income_id"], name: "index_income_recurrents_on_income_id"
+  end
+
+  create_table "income_tags", force: :cascade do |t|
+    t.bigint "income_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["income_id"], name: "index_income_tags_on_income_id"
+    t.index ["tag_id"], name: "index_income_tags_on_tag_id"
   end
 
   create_table "incomes", force: :cascade do |t|
@@ -191,12 +209,16 @@ ActiveRecord::Schema.define(version: 2021_01_23_162901) do
   add_foreign_key "cards", "users"
   add_foreign_key "categories", "users"
   add_foreign_key "expense_recurrents", "expenses"
+  add_foreign_key "expense_tags", "expenses"
+  add_foreign_key "expense_tags", "tags"
   add_foreign_key "expenses", "cards"
   add_foreign_key "expenses", "categories"
   add_foreign_key "expenses", "groups"
   add_foreign_key "expenses", "users"
   add_foreign_key "groups", "users"
   add_foreign_key "income_recurrents", "incomes"
+  add_foreign_key "income_tags", "incomes"
+  add_foreign_key "income_tags", "tags"
   add_foreign_key "incomes", "cards"
   add_foreign_key "incomes", "categories"
   add_foreign_key "incomes", "groups"

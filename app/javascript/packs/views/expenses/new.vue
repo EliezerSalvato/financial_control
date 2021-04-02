@@ -39,8 +39,19 @@
           value: null,
           date: null,
           endAt: null,
-          expenseRecurrents: []
+          expenseTags: [],
+          expenseRecurrents: [],
         }
+      }
+    },
+    computed: {
+      expenseTagsParams() {
+        return this.expense.expenseTags.map(expenseTag => {
+          return {
+            tag_id: expenseTag.tag_id,
+            _destroy: expenseTag._destroy
+          }
+        });
       }
     },
     methods: {
@@ -58,6 +69,7 @@
           value: this.expense.value,
           date: this.expense.date,
           end_at: this.expense.endAt,
+          expense_tags_attributes: this.expenseTagsParams,
           expense_recurrents_attributes: this.expense.expenseRecurrents
         }
 

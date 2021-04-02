@@ -5,7 +5,10 @@ class Income::Cash::Params
       :group_id,
       :category_id,
       :income_type,
-      :end_at
+      :end_at,
+      income_tags_attributes: [
+        :id, :tag_id, :_destroy
+      ]
     ).merge(
       value: params[:value],
       date: params[:date]

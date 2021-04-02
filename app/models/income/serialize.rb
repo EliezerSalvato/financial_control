@@ -1,6 +1,6 @@
 class Income::Serialize
   def self.as_json(income)
-    income.as_json(include: [:card, :income_recurrents], except: [:user_id])
+    income.as_json(include: [:card, :income_recurrents, income_tags: { include: :tag }], except: [:user_id])
   end
 
   def self.collection_as_json(incomes)

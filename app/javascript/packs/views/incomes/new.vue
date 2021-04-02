@@ -39,8 +39,19 @@
           value: null,
           date: null,
           endAt: null,
+          incomeTags: [],
           incomeRecurrents: []
         }
+      }
+    },
+    computed: {
+      incomeTagsParams() {
+        return this.income.incomeTags.map(incomeTag => {
+          return {
+            tag_id: incomeTag.tag_id,
+            _destroy: incomeTag._destroy
+          }
+        });
       }
     },
     methods: {
@@ -58,6 +69,7 @@
           value: this.income.value,
           date: this.income.date,
           end_at: this.income.endAt,
+          income_tags_attributes: this.incomeTagsParams,
           income_recurrents_attributes: this.income.incomeRecurrents
         }
 

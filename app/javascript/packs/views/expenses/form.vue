@@ -72,6 +72,22 @@
         </a>
       </div>
     </div>
+    <div class="field">
+      <div class="control with-add">
+        <SelectMultiple
+          v-model="expenseTags"
+          name="tags"
+          label="Tags"
+          placeholder="Choose the tags"
+          trackBy="tag_id"
+          :items="tags"
+          :error="error('tags')"
+        />
+        <a class="button is-primary add-select-multi" @click.prevent="openModalTag">
+          <i class="fa fa-plus"></i>
+        </a>
+      </div>
+    </div>
     <div v-if="showQuantity" class="field">
       <div class="control">
         <InputNumber
@@ -130,6 +146,7 @@
       <template #body>
         <newCard v-if="modalType == 'card'" :modal="true" @new:card="newCard" />
         <newGroup v-if="modalType == 'group'" :modal="true" @new:group="newGroup" />
+        <newTag v-if="modalType == 'tag'" :modal="true" @new:tag="newTag" />
         <newCategory v-if="modalType == 'category'" :modal="true" @new:category="newCategory" />
       </template>
       <template #footer>
@@ -147,6 +164,7 @@
   import Modal from "../../components/Modal.vue";
   import newCard from "../cards/new.vue";
   import newGroup from "../groups/new.vue";
+  import newTag from "../tags/new.vue";
   import newCategory from "../categories/new.vue";
   import FormPanel from "../../components/FormPanel.vue";
   import ExpenseRecurrents from "./expense_recurrents/form.vue";
@@ -157,6 +175,7 @@
     components: {
       newCard,
       newGroup,
+      newTag,
       newCategory,
       Modal,
       FormPanel,
@@ -177,6 +196,7 @@
         cardId: null,
         categoryId: null,
         groupId: null,
+        expenseTags: null,
         quantity: null,
         value: null,
         date: null,
@@ -185,6 +205,7 @@
         cards: null,
         categories: null,
         groups: null,
+        tags: null,
         endAtWatcher: null,
         modalType: null,
         openModal: false
@@ -295,6 +316,26 @@
         this.modalType = "group";
         this.openModal = true;
       },
+      getTags() {
+        api.get("tags", this.defaultQuery).then(response => {
+          const result = response.data;
+          this.tags = result.data.map(tag => {
+            return {
+              id: tag.id,
+              tag_id: tag.id,
+              name: tag.name
+            }
+          });
+        });
+      },
+      newTag(_tagId) {
+        this.getTags();
+        this.closeModal();
+      },
+      openModalTag() {
+        this.modalType = "tag";
+        this.openModal = true;
+      },
       addRecurrence() {
         this.expenseRecurrents.push({ id: null, date: null, value: null });
       },
@@ -353,6 +394,7 @@
           value: this.value,
           date: this.date,
           endAt: this.endAt,
+          expenseTags: this.expenseTags,
           expenseRecurrents: this.expenseRecurrents
         }
 
@@ -369,6 +411,7 @@
           "value",
           "date",
           "endAt",
+          "expenseTags",
           "expenseRecurrents"
         ];
 
@@ -383,6 +426,7 @@
       async fetchSelects() {
         await this.getCards();
         await this.getCategories();
+        await this.getTags();
         await this.getGroups();
       }
     },
@@ -430,6 +474,7 @@
         this.cardId = expense.cardId;
         this.categoryId = expense.categoryId;
         this.groupId = expense.groupId;
+        this.expenseTags = expense.expenseTags;
 
         this.setWatchers();
         this.emitChangeExpense();
@@ -461,5 +506,9 @@
     flex-grow: 0;
     margin-top: 32px;
     margin-left: 5px;
+  }
+
+  .add-select-multi {
+    height: 42px;
   }
 </style>

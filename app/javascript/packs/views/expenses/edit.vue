@@ -34,6 +34,17 @@
         expenseLoaded: null
       }
     },
+    computed: {
+      expenseTagsParams() {
+        return this.expense.expenseTags.map(expenseTag => {
+          return {
+            id: expenseTag.id,
+            tag_id: expenseTag.tag_id,
+            _destroy: expenseTag._destroy
+          }
+        });
+      }
+    },
     methods: {
       changeExpense(expense) {
         this.expense = expense
@@ -49,6 +60,7 @@
           value: this.expense.value,
           date: this.expense.date,
           end_at: this.expense.endAt,
+          expense_tags_attributes: this.expenseTagsParams,
           expense_recurrents_attributes: this.expense.expenseRecurrents
         }
 
@@ -79,6 +91,12 @@
               _destroy: null
             }
           });
+          const expenseTags = result.expense_tags.map(expenseTag => {
+            return {
+              ...expenseTag,
+              name: expenseTag.tag.name
+            }
+          });
 
           this.expenseLoaded = {
             description: result.description,
@@ -87,6 +105,7 @@
             categoryId: result.category_id,
             groupId: result.group_id,
             endAt: result.end_at,
+            expenseTags: expenseTags,
             expenseRecurrents: expenseRecurrents
           }
         }).catch(error => {

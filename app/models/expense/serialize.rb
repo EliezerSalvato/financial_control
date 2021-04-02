@@ -1,6 +1,6 @@
 class Expense::Serialize
   def self.as_json(expense)
-    expense.as_json(include: [:card, :expense_recurrents], except: [:user_id])
+    expense.as_json(include: [:card, :expense_recurrents, expense_tags: { include: :tag }], except: [:user_id])
   end
 
   def self.collection_as_json(expenses)

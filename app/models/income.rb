@@ -6,8 +6,11 @@ class Income < ApplicationRecord
   belongs_to :group, optional: true
   belongs_to :category, optional: true
 
+  has_many :income_tags, dependent: :destroy
+  has_many :tags, through: :income_tags
   has_many :income_recurrents, dependent: :destroy, index_errors: true
 
+  accepts_nested_attributes_for :income_tags, allow_destroy: true
   accepts_nested_attributes_for :income_recurrents, allow_destroy: true
 
   validates :category, :description, :income_type, presence: true

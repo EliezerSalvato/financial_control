@@ -6,6 +6,9 @@ class Income::CashRecurringIncome::Params
       :category_id,
       :income_type,
       :end_at,
+      income_tags_attributes: [
+        :id, :tag_id, :_destroy
+      ],
       income_recurrents_attributes: [
         :id, :date, :value, :_destroy
       ]

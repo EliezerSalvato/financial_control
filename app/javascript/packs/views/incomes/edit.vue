@@ -34,6 +34,17 @@
         incomeLoaded: null
       }
     },
+    computed: {
+      incomeTagsParams() {
+        return this.income.incomeTags.map(incomeTag => {
+          return {
+            id: incomeTag.id,
+            tag_id: incomeTag.tag_id,
+            _destroy: incomeTag._destroy
+          }
+        });
+      }
+    },
     methods: {
       changeIncome(income) {
         this.income = income
@@ -49,6 +60,7 @@
           value: this.income.value,
           date: this.income.date,
           end_at: this.income.endAt,
+          income_tags_attributes: this.incomeTagsParams,
           income_recurrents_attributes: this.income.incomeRecurrents
         }
 
@@ -79,6 +91,12 @@
               _destroy: null
             }
           });
+          const incomeTags = result.income_tags.map(incomeTag => {
+            return {
+              ...incomeTag,
+              name: incomeTag.tag.name
+            }
+          });
 
           this.incomeLoaded = {
             description: result.description,
@@ -87,6 +105,7 @@
             categoryId: result.category_id,
             groupId: result.group_id,
             endAt: result.end_at,
+            incomeTags: incomeTags,
             incomeRecurrents: incomeRecurrents
           }
         }).catch(error => {

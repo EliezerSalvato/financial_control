@@ -6,8 +6,11 @@ class Expense < ApplicationRecord
   belongs_to :group, optional: true
   belongs_to :category, optional: true
 
+  has_many :expense_tags, dependent: :destroy
+  has_many :tags, through: :expense_tags
   has_many :expense_recurrents, dependent: :destroy, index_errors: true
 
+  accepts_nested_attributes_for :expense_tags, allow_destroy: true
   accepts_nested_attributes_for :expense_recurrents, allow_destroy: true
 
   validates :category, :description, :expense_type, presence: true
