@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_27_191007) do
+ActiveRecord::Schema.define(version: 2021_06_27_212334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,7 +98,6 @@ ActiveRecord::Schema.define(version: 2021_06_27_191007) do
   create_table "expenses", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "card_id"
-    t.bigint "group_id"
     t.bigint "category_id"
     t.string "description", null: false
     t.string "expense_type", null: false
@@ -108,19 +107,7 @@ ActiveRecord::Schema.define(version: 2021_06_27_191007) do
     t.index ["card_id"], name: "index_expenses_on_card_id"
     t.index ["category_id"], name: "index_expenses_on_category_id"
     t.index ["description"], name: "index_expenses_on_description"
-    t.index ["group_id"], name: "index_expenses_on_group_id"
     t.index ["user_id"], name: "index_expenses_on_user_id"
-  end
-
-  create_table "groups", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "name", null: false
-    t.boolean "active", default: true
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["active"], name: "index_groups_on_active"
-    t.index ["name"], name: "index_groups_on_name"
-    t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
   create_table "income_recurrents", force: :cascade do |t|
@@ -144,7 +131,6 @@ ActiveRecord::Schema.define(version: 2021_06_27_191007) do
   create_table "incomes", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "card_id"
-    t.bigint "group_id"
     t.bigint "category_id"
     t.string "description", null: false
     t.string "income_type", null: false
@@ -154,7 +140,6 @@ ActiveRecord::Schema.define(version: 2021_06_27_191007) do
     t.index ["card_id"], name: "index_incomes_on_card_id"
     t.index ["category_id"], name: "index_incomes_on_category_id"
     t.index ["description"], name: "index_incomes_on_description"
-    t.index ["group_id"], name: "index_incomes_on_group_id"
     t.index ["user_id"], name: "index_incomes_on_user_id"
   end
 
@@ -213,15 +198,12 @@ ActiveRecord::Schema.define(version: 2021_06_27_191007) do
   add_foreign_key "expense_tags", "tags"
   add_foreign_key "expenses", "cards"
   add_foreign_key "expenses", "categories"
-  add_foreign_key "expenses", "groups"
   add_foreign_key "expenses", "users"
-  add_foreign_key "groups", "users"
   add_foreign_key "income_recurrents", "incomes"
   add_foreign_key "income_tags", "incomes"
   add_foreign_key "income_tags", "tags"
   add_foreign_key "incomes", "cards"
   add_foreign_key "incomes", "categories"
-  add_foreign_key "incomes", "groups"
   add_foreign_key "incomes", "users"
   add_foreign_key "tags", "users"
 end
