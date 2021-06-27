@@ -28,9 +28,6 @@
           <router-link class="navbar-item" to="/cards">
             Cards
           </router-link>
-          <router-link class="navbar-item" to="/groups">
-            Groups
-          </router-link>
           <router-link class="navbar-item" to="/categories">
             Categories
           </router-link>

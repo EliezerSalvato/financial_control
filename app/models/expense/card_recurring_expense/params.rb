@@ -3,7 +3,6 @@ class Expense::CardRecurringExpense::Params
     params.permit(
       :description,
       :card_id,
-      :group_id,
       :category_id,
       :expense_type,
       :end_at,

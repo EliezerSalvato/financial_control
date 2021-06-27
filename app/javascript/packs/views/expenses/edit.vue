@@ -55,7 +55,6 @@
           expense_type: this.expense.expenseType,
           card_id: this.expense.cardId,
           category_id: this.expense.categoryId,
-          group_id: this.expense.groupId,
           quantity: this.expense.quantity,
           value: this.expense.value,
           date: this.expense.date,
@@ -103,7 +102,6 @@
             expenseType: result.expense_type,
             cardId: result.card_id,
             categoryId: result.category_id,
-            groupId: result.group_id,
             endAt: result.end_at,
             expenseTags: expenseTags,
             expenseRecurrents: expenseRecurrents

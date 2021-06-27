@@ -59,21 +59,6 @@
     </div>
     <div class="field">
       <div class="control with-add">
-        <Select
-          v-model="groupId"
-          name="group"
-          label="Group"
-          placeholder="Choose a group"
-          :items="groups"
-          :error="error('group')"
-        />
-        <a class="button is-primary" @click.prevent="openModalGroup">
-          <i class="fa fa-plus"></i>
-        </a>
-      </div>
-    </div>
-    <div class="field">
-      <div class="control with-add">
         <SelectMultiple
           v-model="expenseTags"
           name="tags"
@@ -145,7 +130,6 @@
     <Modal :openModal="openModal">
       <template #body>
         <newCard v-if="modalType == 'card'" :modal="true" @new:card="newCard" />
-        <newGroup v-if="modalType == 'group'" :modal="true" @new:group="newGroup" />
         <newTag v-if="modalType == 'tag'" :modal="true" @new:tag="newTag" />
         <newCategory v-if="modalType == 'category'" :modal="true" @new:category="newCategory" />
       </template>
@@ -163,7 +147,6 @@
   import enumerable from "../../mixins/enumerable.js";
   import Modal from "../../components/Modal.vue";
   import newCard from "../cards/new.vue";
-  import newGroup from "../groups/new.vue";
   import newTag from "../tags/new.vue";
   import newCategory from "../categories/new.vue";
   import FormPanel from "../../components/FormPanel.vue";
@@ -174,7 +157,6 @@
     mixins: [formable, enumerable],
     components: {
       newCard,
-      newGroup,
       newTag,
       newCategory,
       Modal,
@@ -195,7 +177,6 @@
         expenseType: null,
         cardId: null,
         categoryId: null,
-        groupId: null,
         expenseTags: null,
         quantity: null,
         value: null,
@@ -204,7 +185,6 @@
         expenseRecurrents: [],
         cards: null,
         categories: null,
-        groups: null,
         tags: null,
         endAtWatcher: null,
         modalType: null,
@@ -301,21 +281,6 @@
         this.modalType = "category";
         this.openModal = true;
       },
-      getGroups() {
-        api.get("groups", this.defaultQuery).then(response => {
-          const result = response.data;
-          this.groups = result.data;
-        });
-      },
-      newGroup(groupId) {
-        this.getGroups();
-        this.groupId = groupId;
-        this.closeModal();
-      },
-      openModalGroup() {
-        this.modalType = "group";
-        this.openModal = true;
-      },
       getTags() {
         api.get("tags", this.defaultQuery).then(response => {
           const result = response.data;
@@ -389,7 +354,6 @@
           expenseType: this.expenseType,
           cardId: this.cardId,
           categoryId: this.categoryId,
-          groupId: this.groupId,
           quantity: this.quantity,
           value: this.value,
           date: this.date,
@@ -406,7 +370,6 @@
           "expenseType",
           "cardId",
           "categoryId",
-          "groupId",
           "quantity",
           "value",
           "date",
@@ -427,7 +390,6 @@
         await this.getCards();
         await this.getCategories();
         await this.getTags();
-        await this.getGroups();
       }
     },
     watch: {
@@ -473,7 +435,6 @@
         this.expenseType = expense.expenseType;
         this.cardId = expense.cardId;
         this.categoryId = expense.categoryId;
-        this.groupId = expense.groupId;
         this.expenseTags = expense.expenseTags;
 
         this.setWatchers();

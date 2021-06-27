@@ -17,10 +17,6 @@ import cards from "./views/cards/index.vue";
 import newCard from "./views/cards/new.vue";
 import editCard from "./views/cards/edit.vue";
 
-import groups from "./views/groups/index.vue";
-import newGroup from "./views/groups/new.vue";
-import editGroup from "./views/groups/edit.vue";
-
 import categories from "./views/categories/index.vue";
 import newCategory from "./views/categories/new.vue";
 import editCategory from "./views/categories/edit.vue";
@@ -46,10 +42,6 @@ const router = new VueRouter({
     { path: "/cards", component: cards },
     { path: "/cards/new", component: newCard },
     { path: "/cards/edit/:id", component: editCard },
-
-    { path: "/groups", component: groups },
-    { path: "/groups/new", component: newGroup },
-    { path: "/groups/edit/:id", component: editGroup },
 
     { path: "/categories", component: categories },
     { path: "/categories/new", component: newCategory },

@@ -3,7 +3,6 @@ class Income < ApplicationRecord
 
   belongs_to :user
   belongs_to :card, class_name: '::Card', optional: true
-  belongs_to :group, optional: true
   belongs_to :category, optional: true
 
   has_many :income_tags, dependent: :destroy

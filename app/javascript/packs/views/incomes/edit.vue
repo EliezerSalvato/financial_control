@@ -55,7 +55,6 @@
           income_type: this.income.incomeType,
           card_id: this.income.cardId,
           category_id: this.income.categoryId,
-          group_id: this.income.groupId,
           quantity: this.income.quantity,
           value: this.income.value,
           date: this.income.date,
@@ -103,7 +102,6 @@
             incomeType: result.income_type,
             cardId: result.card_id,
             categoryId: result.category_id,
-            groupId: result.group_id,
             endAt: result.end_at,
             incomeTags: incomeTags,
             incomeRecurrents: incomeRecurrents

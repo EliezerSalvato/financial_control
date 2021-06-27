@@ -3,7 +3,6 @@ class Income::Card::Params
     params.permit(
       :description,
       :card_id,
-      :group_id,
       :category_id,
       :income_type,
       :end_at,
