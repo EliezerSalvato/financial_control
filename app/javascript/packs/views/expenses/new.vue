@@ -45,7 +45,7 @@
     },
     computed: {
       expenseTagsParams() {
-        return this.expense.expenseTags.map(expenseTag => {
+        return (this.expense.expenseTags || []).map(expenseTag => {
           return {
             tag_id: expenseTag.tag_id,
             _destroy: expenseTag._destroy

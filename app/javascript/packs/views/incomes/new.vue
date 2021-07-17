@@ -45,7 +45,7 @@
     },
     computed: {
       incomeTagsParams() {
-        return this.income.incomeTags.map(incomeTag => {
+        return (this.income.incomeTags || []).map(incomeTag => {
           return {
             tag_id: incomeTag.tag_id,
             _destroy: incomeTag._destroy

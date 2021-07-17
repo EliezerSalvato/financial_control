@@ -107,7 +107,7 @@ export default {
   },
 
   updated() {
-    if (this.value.length > 0 && (this.selectedItems.length == 0 || (this.currentValue || []).length == 0)) {
+    if ((this.value || []).length > 0 && ((this.selectedItems || []).length == 0 || (this.currentValue || []).length == 0)) {
       this.currentValue = [ ...this.value ];
       this.selectedItems = [ ...this.value ];
       this.persistedItems = [ ...this.value ];
