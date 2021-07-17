@@ -2,7 +2,8 @@ class MonthlyExpense < ApplicationRecord
   def self.by_month_and_year(user_id, month, year)
     MonthlyExpense.find_by_sql(
       <<-SQL
-        SELECT cards.name AS expense_type,
+        SELECT expenses.id AS id,
+               cards.name AS expense_type,
                expenses.description AS description,
                expense_recurrents.value AS value,
                expense_recurrents.date AS date
@@ -32,7 +33,8 @@ class MonthlyExpense < ApplicationRecord
                  )
                )
         UNION ALL
-        SELECT types.type AS expense_type,
+        SELECT expenses.id AS id,
+               types.type AS expense_type,
                expenses.description AS description,
                expense_recurrents.value AS value,
                expense_recurrents.date AS date

@@ -2,7 +2,7 @@
   <nav class="items panel">
     <div class="panel-heading">
       <p>{{ type }}</p>
-      <router-link class="button is-primary" :to="route">
+      <router-link class="button is-primary" :to="routeNew">
         <i class="fa fa-plus"></i>
       </router-link>
     </div>
@@ -30,7 +30,11 @@
                 <tbody>
                   <tr v-for="(item, index_item) in itemsByType" :key="index_item">
                     <td>{{ formatDate(item.date) }}</td>
-                    <td>{{ item.description }}</td>
+                    <td>
+                      <router-link :to="routeEdit(item.id)">
+                        {{ item.description }}
+                      </router-link>
+                    </td>
                     <td>{{ formatValue(item.value) }}</td>
                   </tr>
                 </tbody>
@@ -106,7 +110,7 @@
           return Number(item.value)
         }).reduce((sum, value) => sum + value, 0);
       },
-      route() {
+      routeNew() {
         return `/${this.type.toLowerCase()}/new`;
       }
     },
@@ -124,6 +128,9 @@
       },
       showHideItem(type) {
         this.displayed = (this.displayed == type ? null : type);
+      },
+      routeEdit(id) {
+        return `/${this.type.toLowerCase()}/edit/${id}`;
       }
     }
   }
