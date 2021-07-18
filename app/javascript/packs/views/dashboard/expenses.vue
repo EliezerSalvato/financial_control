@@ -3,11 +3,11 @@
     type="Expenses"
     type_column="expense_type"
     :items="expenses"
+    :currentDate="currentDate"
   />
 </template>
 
 <script>
-  import { api } from "../../services.js";
   import fetchable from "../../mixins/fetchable.js";
   import Board from "./board.vue";
 

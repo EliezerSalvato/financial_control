@@ -32,7 +32,7 @@
                     <td>{{ formatDate(item.date) }}</td>
                     <td>
                       <router-link :to="routeEdit(item.id)">
-                        {{ item.description }}
+                        {{ description(item) }}
                       </router-link>
                     </td>
                     <td>{{ formatValue(item.value) }}</td>
@@ -80,7 +80,11 @@
     props: {
       type: String,
       type_column: String,
-      items: Array
+      items: Array,
+      currentDate: {
+        type: Object,
+        required: true
+      }
     },
     data() {
       return {
@@ -131,6 +135,24 @@
       },
       routeEdit(id) {
         return `/${this.type.toLowerCase()}/edit/${id}`;
+      },
+      description(item) {
+        let description = item.description;
+
+        if ([this.ExpenseTypes.INSTALLMENT, this.ExpenseTypes.RECURRING_INSTALLMENTS].includes(item.kind)) {
+          const startDate = moment(item.date, this.DateFormat.BACK_END);
+          const endDate = moment(item.end_at, this.DateFormat.BACK_END);
+          const currentDate = moment(
+            `${this.currentDate.year}-${this.currentDate.month}-${startDate.date()}`,
+            this.DateFormat.BACK_END
+          );
+          const totalDiff = endDate.diff(startDate, 'months') + 1;
+          const currentDiff = currentDate.diff(startDate, 'months');
+
+          description = `${description} - ${currentDiff}/${totalDiff}`
+        }
+
+        return description;
       }
     }
   }

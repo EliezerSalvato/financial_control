@@ -3,6 +3,7 @@
     type="Incomes"
     type_column="income_type"
     :items="incomes"
+    :currentDate="currentDate"
   />
 </template>
 

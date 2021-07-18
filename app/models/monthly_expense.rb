@@ -6,7 +6,9 @@ class MonthlyExpense < ApplicationRecord
                cards.name AS expense_type,
                expenses.description AS description,
                expense_recurrents.value AS value,
-               expense_recurrents.date AS date
+               expense_recurrents.date AS date,
+               expenses.expense_type AS kind,
+               expenses.end_at AS end_at
           FROM expenses
           JOIN cards
             ON cards.id = expenses.card_id
@@ -37,7 +39,9 @@ class MonthlyExpense < ApplicationRecord
                types.type AS expense_type,
                expenses.description AS description,
                expense_recurrents.value AS value,
-               expense_recurrents.date AS date
+               expense_recurrents.date AS date,
+               expenses.expense_type AS kind,
+               expenses.end_at AS end_at
           FROM expenses
           JOIN expense_recurrents
             ON expense_recurrents.id = (

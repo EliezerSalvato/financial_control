@@ -6,7 +6,9 @@ class MonthlyIncome < ApplicationRecord
                cards.name AS income_type,
                incomes.description AS description,
                income_recurrents.value AS value,
-               income_recurrents.date AS date
+               income_recurrents.date AS date,
+               incomes.income_type AS kind,
+               incomes.end_at AS end_at
           FROM incomes
           JOIN cards
             ON cards.id = incomes.card_id
@@ -37,7 +39,9 @@ class MonthlyIncome < ApplicationRecord
                types.type AS income_type,
                incomes.description AS description,
                income_recurrents.value AS value,
-               income_recurrents.date AS date
+               income_recurrents.date AS date,
+               incomes.income_type AS kind,
+               incomes.end_at AS end_at
           FROM incomes
           JOIN income_recurrents
             ON income_recurrents.id = (
