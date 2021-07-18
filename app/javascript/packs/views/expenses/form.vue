@@ -425,26 +425,23 @@
       expenseLoaded(expense) {
         this.fetchSelects();
 
-        this.expenseRecurrents = expense.expenseRecurrents;
-        const firstExpenseRecurrent = this.firstExpenseRecurrent();
-        this.value = firstExpenseRecurrent.value;
-        this.date = firstExpenseRecurrent.date;
-        this.endAt = expense.endAt;
-        this.quantity = this.getQuantity(this.date);
-        this.description = expense.description;
         this.expenseType = expense.expenseType;
         this.cardId = expense.cardId;
         this.categoryId = expense.categoryId;
-        this.expenseTags = expense.expenseTags;
+
+        if (this.type == "edit") {
+          this.expenseRecurrents = expense.expenseRecurrents;
+          const firstExpenseRecurrent = this.firstExpenseRecurrent();
+          this.value = firstExpenseRecurrent.value;
+          this.date = firstExpenseRecurrent.date;
+          this.endAt = expense.endAt;
+          this.quantity = this.getQuantity(this.date);
+          this.description = expense.description;
+          this.expenseTags = expense.expenseTags;
+        }
 
         this.setWatchers();
         this.emitChangeExpense();
-      }
-    },
-    created() {
-      if (this.type == "new") {
-        this.fetchSelects();
-        this.setWatchers();
       }
     }
   }

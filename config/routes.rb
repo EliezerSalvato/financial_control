@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root 'home#index'
   devise_for :users
@@ -7,7 +9,11 @@ Rails.application.routes.draw do
       resources :categories
       resources :tags
       resources :cards
-      resources :expenses
+      resources :expenses do
+        collection do
+          get :last_expense
+        end
+      end
       resources :incomes
       resources :dashboard do
         collection do
@@ -18,5 +24,5 @@ Rails.application.routes.draw do
     end
   end
 
-  match "*path", to: "home#index", via: :get
+  match '*path', to: 'home#index', via: :get
 end

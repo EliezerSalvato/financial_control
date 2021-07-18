@@ -8,6 +8,7 @@
       <Expense
         type="new"
         :currentErrors="errors"
+        :expenseLoaded="expenseLoaded"
         @change:expense="changeExpense"
       />
     </template>
@@ -29,18 +30,8 @@
     },
     data() {
       return {
-        expense: {
-          description: null,
-          expenseType: null,
-          cardId: null,
-          categoryId: null,
-          quantity: null,
-          value: null,
-          date: null,
-          endAt: null,
-          expenseTags: [],
-          expenseRecurrents: [],
-        }
+        expense: null,
+        expenseLoaded: null
       }
     },
     computed: {
@@ -85,6 +76,19 @@
           }
         });
       }
+    },
+    created() {
+      this.getWithLoading(`expenses/last_expense`).then(response => {
+        const result = response.data;
+
+        this.expenseLoaded = {
+          expenseType: result.expense_type,
+          cardId: result.card_id,
+          categoryId: result.category_id
+        }
+      }).catch(error => {
+        this.catch_errors(error);
+      });
     }
   }
 </script>
