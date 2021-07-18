@@ -22,7 +22,7 @@
             v-model="cardType"
             name="card_type"
             label="Card type"
-            placeholder="Choose a card type"
+            placeholder="Select a card type"
             :required="true"
             :items="CardTypes.values"
             :error="error('card_type')"
