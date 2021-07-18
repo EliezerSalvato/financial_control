@@ -1,4 +1,4 @@
-class Api::V1::DashboardController < ApplicationController
+class Api::V1::HomeController < ApplicationController
   def incomes
     Income::MonthlyIncome::Fetch
       .call(user: current_user, params: params)

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
         end
       end
       resources :incomes
-      resources :dashboard do
+      resources :home do
         collection do
           get :incomes
           get :expenses

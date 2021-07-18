@@ -2,7 +2,7 @@
   <div>
     <Loading v-show="showLoading" />
 
-    <div v-show="!showLoading" class="dashboard">
+    <div v-show="!showLoading" class="home">
       <div class="date-chosen buttons has-addons">
         <button class="button" @click="prevDate">‹ Prev</button>
         <button class="button">{{ currentDate.month }}/{{ currentDate.year }}</button>
@@ -31,7 +31,7 @@
   });
 
   export default {
-    name: "Dashboard",
+    name: "Home",
     components: {
       Incomes,
       Expenses
@@ -77,7 +77,7 @@
 </script>
 
 <style scoped>
-  .dashboard {
+  .home {
     margin: 0 auto;
     max-width: 1344px;
     display: grid;
@@ -93,7 +93,7 @@
   }
 
   @media (max-width: 1023px) {
-    .dashboard {
+    .home {
       margin: 0 10px;
       grid-template-columns: 1fr;
       grid-template-rows: 55px minmax(50px, auto-fit) minmax(50px, auto-fit);

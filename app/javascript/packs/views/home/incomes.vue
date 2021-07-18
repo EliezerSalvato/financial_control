@@ -1,19 +1,18 @@
 <template>
   <Board
-    type="Expenses"
-    type_column="expense_type"
-    :items="expenses"
+    type="Incomes"
+    type_column="income_type"
+    :items="incomes"
     :currentDate="currentDate"
   />
 </template>
 
 <script>
-  import fetchable from "../../mixins/fetchable.js";
+  import { api } from "../../services.js";
   import Board from "./board.vue";
 
   export default {
-    name: "Expenses",
-    mixins: [fetchable],
+    name: "Incomes",
     components: {
       Board
     },
@@ -25,13 +24,13 @@
     },
     data() {
       return {
-        expenses: []
+        incomes: []
       }
     },
     methods: {
       total() {
-        return (this.expenses || []).map(expense => {
-          return Number(expense.value)
+        return (this.incomes || []).map(income => {
+          return Number(income.value)
         }).reduce((sum, value) => sum + value, 0);
       },
       changeTotal() {
@@ -43,12 +42,11 @@
         handler() {
           const params = {
             month: this.currentDate.month,
-            year: this.currentDate.year,
-            loading: true
+            year: this.currentDate.year
           }
 
-          this.getWithLoading("dashboard/expenses", params).then(response => {
-            this.expenses = response.data;
+          api.get("home/incomes", params).then(response => {
+            this.incomes = response.data;
             this.changeTotal();
           });
         },
@@ -60,6 +58,13 @@
 
 <style scoped>
   .items {
-    grid-area: expenses;
+    grid-area: incomes;
+  }
+
+  @media (max-width: 1023px) {
+    .items {
+      margin-top: -12px;
+      margin-bottom: 5px !important;
+    }
   }
 </style>
