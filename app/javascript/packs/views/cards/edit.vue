@@ -8,6 +8,7 @@
       <div class="field">
         <div class="control">
           <InputText
+            ref="name"
             v-model="name"
             name="name"
             label="Name"
@@ -135,6 +136,8 @@
           this.cardType = result.card_type;
 
           this.setCardByType(result);
+
+          this.$refs.name.focus();
         }).catch(error => {
           this.catch_errors(error);
         });

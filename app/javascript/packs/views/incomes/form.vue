@@ -3,6 +3,7 @@
     <div class="field">
       <div class="control">
         <InputText
+          ref="description"
           v-model="description"
           name="description"
           label="Description"
@@ -426,6 +427,7 @@
 
         this.setWatchers();
         this.emitChangeIncome();
+        this.$refs.description.focus();
       }
     },
     created() {
@@ -433,6 +435,9 @@
         this.fetchSelects();
         this.setWatchers();
       }
+    },
+    mounted() {
+      this.$refs.description.focus();
     }
   }
 </script>

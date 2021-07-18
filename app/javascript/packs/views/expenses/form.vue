@@ -3,6 +3,7 @@
     <div class="field">
       <div class="control">
         <InputText
+          ref="description"
           v-model="description"
           name="description"
           label="Description"
@@ -442,6 +443,7 @@
 
         this.setWatchers();
         this.emitChangeExpense();
+        this.$refs.description.focus();
       }
     }
   }

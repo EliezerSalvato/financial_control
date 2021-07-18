@@ -8,10 +8,10 @@
       <div class="field">
         <div class="control">
           <InputText
+            ref="name"
             v-model="name"
             name="name"
             label="Name"
-            ref="input"
             :required="true"
             :error="error('name')"
           />
@@ -71,6 +71,7 @@
           const result = response.data;
           this.name = result.name;
           this.active = result.active;
+          this.$refs.name.focus();
         }).catch(error => {
           this.catch_errors(error);
         });

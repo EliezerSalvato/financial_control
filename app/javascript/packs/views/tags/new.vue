@@ -9,10 +9,10 @@
       <div class="field">
         <div class="control">
           <InputText
+            ref="name"
             v-model="name"
             name="name"
             label="Name"
-            ref="input"
             :required="true"
             :error="error('name')"
           />
@@ -65,6 +65,9 @@
           }
         });
       }
+    },
+    mounted() {
+      this.$refs.name.focus();
     }
   }
 </script>
