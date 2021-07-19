@@ -6,8 +6,8 @@ class Expense::FindLastExpense < Micro::Case
   def call!
     expense = user.expenses.last
 
-    return Success { { expense: expense } } if expense.present?
-
-    Failure(:expense_not_found)
+    Success { { expense: expense } }
+  rescue
+    Failure(:invalid_expense)
   end
 end

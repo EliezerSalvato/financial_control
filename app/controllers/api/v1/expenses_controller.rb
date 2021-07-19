@@ -48,7 +48,6 @@ class Api::V1::ExpensesController < ApplicationController
     Expense::FindLastExpense
       .call(user: current_user)
       .then(Expense::Serialize::AsJson)
-      .on_failure(:expense_not_found) { render_json(404, error: { id: 'not found' }) }
       .on_failure(:invalid_expense) { |error| render_json(422, error: error[:errors]) }
       .on_success { |result| render_json(200, result[:data]) }
   end
