@@ -5,6 +5,8 @@ Vue.use(VueRouter);
 
 import home from "./views/home/index.vue";
 
+import filters from "./views/filters/index.vue";
+
 import incomes from "./views/incomes/index.vue";
 import newIncome from "./views/incomes/new.vue";
 import editIncome from "./views/incomes/edit.vue";
@@ -30,6 +32,8 @@ const router = new VueRouter({
   mode: "history",
   routes: [
     { path: "/", component: home },
+
+    { path: "/filters", component: filters },
 
     { path: "/incomes", component: incomes },
     { path: "/incomes/new", component: newIncome },

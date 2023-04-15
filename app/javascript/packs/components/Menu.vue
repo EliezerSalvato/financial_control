@@ -19,6 +19,9 @@
           <router-link class="navbar-item" to="/" exact>
             Home
           </router-link>
+          <router-link class="navbar-item" to="/filters">
+            Filters
+          </router-link>
           <router-link class="navbar-item" to="/incomes">
             Incomes
           </router-link>

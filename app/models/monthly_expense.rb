@@ -8,7 +8,9 @@ class MonthlyExpense < ApplicationRecord
                expense_recurrents.value AS value,
                expense_recurrents.date AS date,
                expenses.expense_type AS kind,
-               expenses.end_at AS end_at
+               expenses.end_at AS end_at,
+               expenses.category_id AS category_id,
+               tags.ids AS tag_ids
           FROM expenses
           JOIN cards
             ON cards.id = expenses.card_id
@@ -24,7 +26,12 @@ class MonthlyExpense < ApplicationRecord
                         )
                ORDER BY expense_recurrents.date DESC
                   LIMIT 1
-               )
+               ),
+       LATERAL (
+                 SELECT array_agg(expense_tags.tag_id) AS ids
+                   FROM expense_tags
+                  WHERE expense_tags.expense_id = expenses.id
+               ) AS tags
          WHERE expenses.user_id = #{user_id}
            AND cards.card_type = 'Credit'
            AND (
@@ -41,7 +48,9 @@ class MonthlyExpense < ApplicationRecord
                expense_recurrents.value AS value,
                expense_recurrents.date AS date,
                expenses.expense_type AS kind,
-               expenses.end_at AS end_at
+               expenses.end_at AS end_at,
+               expenses.category_id AS category_id,
+               tags.ids AS tag_ids
           FROM expenses
           JOIN expense_recurrents
             ON expense_recurrents.id = (
@@ -58,7 +67,12 @@ class MonthlyExpense < ApplicationRecord
                          WHEN cards.card_type = 'Debit' THEN cards.name
                          WHEN expense_type = 'cash' THEN 'Cash'
                        END AS type
-               ) AS types
+               ) AS types,
+       LATERAL (
+                 SELECT array_agg(expense_tags.tag_id) AS ids
+                   FROM expense_tags
+                  WHERE expense_tags.expense_id = expenses.id
+               ) AS tags
          WHERE expenses.user_id = #{user_id}
            AND types.type IS NOT NULL
            AND (expenses.end_at IS NULL OR expenses.end_at >= make_date(#{year}, #{month}, 1))
