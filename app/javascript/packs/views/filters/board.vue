@@ -8,13 +8,16 @@
         <thead>
           <tr>
             <th>{{ type }}</th>
-            <th colspan="2">Value</th>
+            <th>Value</th>
+            <th>Goal</th>
+            <th>Diff</th>
+            <th colspan="2">%</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr v-for="(type, index) in typesWithDisplayItem" :key="index">
-            <td v-if="type == displayedItem" colspan="3">
+          <tr v-for="(type, index) in typesWithDisplayItem" :key="index" :class="goalColor(type)">
+            <td v-if="type == displayedItem" colspan="6">
               <table class="table is-bordered is-striped is-hoverable is-fullwidth">
                 <thead>
                   <tr>
@@ -37,8 +40,11 @@
                 </tbody>
               </table>
             </td>
-            <td v-if="type != displayedItem">{{ nameByType(type).name }}</td>
+            <td v-if="type != displayedItem">{{ typeById(type).name }}</td>
             <td v-if="type != displayedItem">{{ formatValue(totalByType(type)) }}</td>
+            <td v-if="type != displayedItem">{{ formatValue(typeById(type).goal) }}</td>
+            <td v-if="type != displayedItem">{{ formatValue(diffTotalVsGoal(type)) }}</td>
+            <td v-if="type != displayedItem">{{ formatPercent(percent(type)) }}</td>
             <td v-if="type != displayedItem" class="expand_header">
               <a class="expand" @click="showHideItem(type)">
                 <span :class="(type == displayed ? 'minus' : 'plus')"></span>
@@ -48,7 +54,7 @@
         </tbody>
 
         <tfoot>
-          <td v-if="!items.length" colspan="3">No {{ type }} found.</td>
+          <td v-if="!items.length" colspan="6">No {{ type }} found.</td>
         </tfoot>
       </table>
     </div>
@@ -96,7 +102,7 @@
         return Array.from(new Set((this.items || []).map(item => item[this.type_column]).flat())).filter(Boolean);
       },
       typesWithNames() {
-        return this.types.map(type => this.nameByType(type)).sort((a, b) => a.name.localeCompare(b.name)).map(item => item.id);
+        return this.types.map(type => this.typeById(type)).sort((a, b) => a.name.localeCompare(b.name)).map(item => item.id);
       },
       typesWithItems() {
         return this.typesWithNames.map(type => [type, `${type}_items`]).flat(1);
@@ -119,14 +125,20 @@
         return moment(date, this.DateFormat.BACK_END).format(this.DateFormat.FRONT_END);
       },
       formatValue(value) {
-        return accountingJs.formatNumber(value);
+        return !value ? '' : accountingJs.formatNumber(value);
       },
-      nameByType(id) {
+      formatPercent(value) {
+        return !value ? '' : `${accountingJs.formatNumber(value)}%`;
+      },
+      typeById(id) {
         const type = this.typeItems.find(item => item.id == id );
+
+        if (!type) return {};
 
         return {
           id: id,
-          name: type.name
+          name: type.name,
+          goal: type.goal
         }
       },
       totalByType(type) {
@@ -134,14 +146,23 @@
           return ([item[this.type_column]].flat().includes(type) ? Number(item.value) : 0)
         }).reduce((sum, value) => sum + value, 0);
       },
+      diffTotalVsGoal(type) {
+        const goal = this.typeById(type).goal;
+        return !goal ? '' : goal - this.totalByType(type);
+      },
+      percent(type) {
+        const goal = this.typeById(type).goal;
+        return !goal ? '' : ((this.totalByType(type) / goal) * 100);
+      },
       showHideItem(type) {
         this.displayed = (this.displayed == type ? null : type);
       },
       routeEdit(id) {
         return `/expenses/edit/${id}`;
       },
-      log(item) {
-        console.log(item)
+      goalColor(type) {
+        const percent = this.percent(type);
+        return (percent < 80 ? '' : (percent < 100 ? 'goal-color-warning' : 'goal-color-danger'));
       },
       description(item) {
         let description = item.description;
@@ -223,5 +244,21 @@
   table td {
     overflow: hidden;
     padding: 5px;
+  }
+
+  .goal-color-warning {
+    background-color: #FFFBEB !important;
+  }
+
+  .goal-color-warning:hover {
+    background-color: #FAF6E6 !important;
+  }
+
+  .goal-color-danger {
+    background-color: #FEECF0 !important;
+  }
+
+  .goal-color-danger:hover {
+    background-color: #F2E1E5 !important;
   }
 </style>

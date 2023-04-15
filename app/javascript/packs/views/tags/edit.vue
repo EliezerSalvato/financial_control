@@ -17,6 +17,18 @@
           />
         </div>
       </div>
+
+      <div class="field">
+        <div class="control">
+          <InputNumeric
+            v-model="goal"
+            name="goal"
+            label="Goal"
+            :error="error('goal')"
+          />
+        </div>
+      </div>
+
       <div class="field">
         <div class="control">
           <CheckBox v-model="active" name="active" label="Active" />
@@ -40,6 +52,7 @@
     data() {
       return {
         name: null,
+        goal: null,
         active: null
       }
     },
@@ -47,6 +60,7 @@
       save() {
         const params = {
           name: this.name,
+          goal: this.goal,
           active: this.active
         }
 
@@ -70,6 +84,7 @@
         this.getWithLoading(`tags/${this.$route.params.id}`).then(response => {
           const result = response.data;
           this.name = result.name;
+          this.goal = result.goal;
           this.active = result.active;
           this.$refs.name.focus();
         }).catch(error => {

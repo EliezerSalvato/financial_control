@@ -18,6 +18,17 @@
           />
         </div>
       </div>
+
+      <div class="field">
+        <div class="control">
+          <InputNumeric
+            v-model="goal"
+            name="goal"
+            label="Goal"
+            :error="error('goal')"
+          />
+        </div>
+      </div>
     </template>
   </FormPanel>
 </template>
@@ -38,13 +49,15 @@
     },
     data() {
       return {
-        name: null
+        name: null,
+        goal: null
       }
     },
     methods: {
       save() {
         const params = {
-          name: this.name
+          name: this.name,
+          goal: this.goal
         }
 
         api.post("categories", params).then(response => {

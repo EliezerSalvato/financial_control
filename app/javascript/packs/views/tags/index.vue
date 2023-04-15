@@ -10,6 +10,8 @@
       <td>
         <InputText name="by_name" placeholder="Filter by name" @change:value="filterChange" />
       </td>
+      <td>
+      </td>
       <td class="is-hidden-mobile">
         <Select
           name="by_active"
@@ -22,10 +24,12 @@
 
     <template #table-header>
       <th>Name</th>
+      <th>Goal</th>
       <th class="active is-hidden-mobile">Active</th>
     </template>
 
     <template #table-item="{ item }">
+      <td>{{ formatValue(item.goal) }}</td>
       <td class="is-hidden-mobile">{{ item.active ? "Yes" : "No" }}</td>
     </template>
   </IndexPanel>
@@ -36,6 +40,12 @@
   import { api } from "../../services.js";
   import indexable from "../../mixins/indexable.js";
   import IndexPanel from "../../components/IndexPanel.vue";
+  import accountingJs from 'accounting-js';
+
+  Object.assign(accountingJs.settings, {
+    decimal: ",",
+    thousand: "."
+  });
 
   export default {
     mixins: [indexable],
@@ -50,6 +60,9 @@
           this.items = result.data;
           this.paginatable = result.paginatable;
         });
+      },
+      formatValue(value) {
+        return !value ? '' : accountingJs.formatNumber(value);
       },
       deleteItem(itemId) {
         api.delete(`tags/${itemId}`).then(response => {

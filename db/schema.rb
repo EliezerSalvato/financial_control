@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_17_204257) do
+ActiveRecord::Schema.define(version: 2023_04_15_144517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2021_07_17_204257) do
     t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "goal"
     t.index ["active"], name: "index_categories_on_active"
     t.index ["name"], name: "index_categories_on_name"
     t.index ["user_id"], name: "index_categories_on_user_id"
@@ -171,6 +172,7 @@ ActiveRecord::Schema.define(version: 2021_07_17_204257) do
     t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "goal"
     t.index ["active"], name: "index_tags_on_active"
     t.index ["name"], name: "index_tags_on_name"
     t.index ["user_id"], name: "index_tags_on_user_id"
